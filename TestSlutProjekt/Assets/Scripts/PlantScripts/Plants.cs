@@ -23,6 +23,11 @@ public class Plants : MonoBehaviour
     public void ChangeHealth(float amount)
     {
         health += amount;
+
+        if (health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
 
     public bool CheckPrice()
