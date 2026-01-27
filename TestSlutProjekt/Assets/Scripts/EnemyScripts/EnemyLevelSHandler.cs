@@ -3,6 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 
+
+[System.Serializable]
+public class EnemyLevel
+{
+    public string levelName;
+    public List<EnemyWave> waves = new List<EnemyWave>();
+}
+
 [System.Serializable]
 public class EnemyGroup // Creates the information for each group
 {
@@ -21,9 +29,14 @@ public class EnemyWave
 
 public class EnemyLevelSHandler : MonoBehaviour
 {
-    public List<EnemyWave> waves = new List<EnemyWave>(); // List of waves
+    public List<EnemyLevel> levels = new List<EnemyLevel>();
+    private int levelIndex = 0;
 
-    public List<Transform> spawnPoints = new List<Transform>();
+    private EnemyLevel currentLevel;
+
+    List<Transform> spawnPoints = new List<Transform>();
+
+    public GameObject SpawnPointsArea;
 
     public TMP_Text waveText;
 
@@ -35,23 +48,38 @@ public class EnemyLevelSHandler : MonoBehaviour
     public float wavePopDuration = 0.5f;   // How long it grows/shrinks
     public float waveDisplayDuration = 1f; // How long it stays on full size
 
-   // private GameObject Player;
+    // private GameObject Player;
 
     private void Start()
     {
+        foreach (Transform spawns in SpawnPointsArea.transform)
+        {
+            spawnPoints.Add(spawns);
+        }
 
         waveText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
-        waveText.rectTransform.localScale = Vector3.zero; // start invisible
+        waveText.rectTransform.localScale = Vector3.zero;
 
-        if (waves.Count > 0) // If there's any waves
+        levelIndex = PlayerPrefs.GetInt("PlayerLevel");
+
+        if (levels.Count == 0)
         {
-            StartCoroutine(RunWave(waves[0]));
+            Debug.LogWarning("No levels configured!");
+            return;
         }
-        else
+
+        if (levelIndex < 0 || levelIndex >= levels.Count)
         {
-            Debug.LogWarning("No waves configured!");
+            Debug.LogError("Invalid level index!");
+            return;
         }
+
+        currentLevel = levels[levelIndex];
+        currentWaveIndex = 0;
+
+        StartCoroutine(RunWave(currentLevel.waves[currentWaveIndex]));
     }
+
 
     private IEnumerator ShowWaveText(string text)
     {
@@ -121,14 +149,19 @@ public class EnemyLevelSHandler : MonoBehaviour
 
         currentWaveIndex++;
 
-        if (currentWaveIndex < waves.Count)
-            yield return StartCoroutine(RunWave(waves[currentWaveIndex]));
-        else // If u beat the game
-            yield return StartCoroutine(ShowWaveText("All waves completed!"));
+        if (currentWaveIndex < currentLevel.waves.Count)
+        {
+            yield return StartCoroutine(RunWave(currentLevel.waves[currentWaveIndex]));
+        }
+        else
+        {
+            // Level Finished
+            yield return StartCoroutine(ShowWaveText("Level Complete!"));
+            Debug.Log("Level completed!");
 
-        yield return new WaitForSeconds(2f);
-
-       // Player.GetComponent<PlayerHandler>().EndGame("True"); // win
+            // Win logic here
+            // Player.GetComponent<PlayerHandler>().EndGame(true);
+        }
     }
 
     private void SpawnEnemy(EnemyGroup group) // Spawn enemies
