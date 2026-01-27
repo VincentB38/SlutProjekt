@@ -5,31 +5,29 @@ using UnityEngine.InputSystem;
 public class PlantPlacementController : MonoBehaviour
 {
     [Header("Plants")]
-   // public Plant[] availablePlants;   // assign prefabs in inspector
+    public Plants[] availablePlants;   // assign prefabs in inspector
     public int selectedPlantIndex = 0;
 
     [Header("Placement")]
     [SerializeField] LayerMask tileLayer;
 
-    [Header("Resources")]
     public TextMeshPro SunText;
-    public int Sun = 150;
 
     void Update()
     {
-        SunText.text = $"Sun: {Sun}";
+        SunText.text = $"Sun: {transform.GetComponent<PlayerStats>().GetMoney()}";
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(
             Mouse.current.position.ReadValue()
         );
 
         // Change selected plant (number keys)
-        if (Input.GetKeyDown(KeyCode.Alpha1)) selectedPlantIndex = 0;
-        if (Input.GetKeyDown(KeyCode.Alpha2)) selectedPlantIndex = 1;
-        if (Input.GetKeyDown(KeyCode.Alpha3)) selectedPlantIndex = 2;
+        if (Keyboard.current.digit1Key.wasPressedThisFrame) selectedPlantIndex = 0;
+        if (Keyboard.current.digit2Key.wasPressedThisFrame) selectedPlantIndex = 1;
+        if (Keyboard.current.digit3Key.wasPressedThisFrame) selectedPlantIndex = 2;
 
         // Place plant
-        if (Input.GetMouseButtonDown(0))
+        if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             Collider2D tileCol = Physics2D.OverlapPoint(mousePos, tileLayer);
             if (tileCol == null) return;
@@ -37,17 +35,17 @@ public class PlantPlacementController : MonoBehaviour
             PlantTile tile = tileCol.GetComponent<PlantTile>();
             if (tile == null || tile.isOccupied) return;
 
-           // Plant plantPrefab = availablePlants[selectedPlantIndex];
-            //if (Sun < plantPrefab.sunCost) return;
+           Plants plantPrefab = availablePlants[selectedPlantIndex];
+            if (plantPrefab.CheckPrice() == false) return;
 
-          //  Sun -= plantPrefab.sunCost;
+            plantPrefab.Buy();
             tile.isOccupied = true;
 
-           // Instantiate(
-           //     plantPrefab,
-           //     tile.plantAnchor.position,
-           //     Quaternion.identity
-           // );
+           Instantiate(
+               plantPrefab,
+                tile.plantAnchor.position,
+                Quaternion.identity
+            );
         }
     }
 }
