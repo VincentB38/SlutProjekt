@@ -2,12 +2,13 @@ using System.Collections;
 using System.Diagnostics.CodeAnalysis;
 using UnityEngine;
 
-public class Currency : MonoBehaviour
+public class PlayerStats : MonoBehaviour
 {
     private int money;
     [SerializeField] private int gainMoney;
 
     private int level;
+    private int maxLevel;
 
     private float timer;
 
@@ -34,6 +35,11 @@ public class Currency : MonoBehaviour
 
     public void SetLevel(int level)
     {
+        if (level > maxLevel) // Checks if level is bigger than maxlevel, adjusts the maxlevel
+        {
+            PlayerPrefs.SetInt("PlayerMaxLevel", level);
+        }
+
         PlayerPrefs.SetInt("PlayerLevel", level);
         PlayerPrefs.Save();
     }
