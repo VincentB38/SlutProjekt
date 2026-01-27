@@ -11,7 +11,7 @@ public class PlantPlacementController : MonoBehaviour
     [Header("Placement")]
     [SerializeField] LayerMask tileLayer;
 
-    public TextMeshPro SunText;
+    public TextMeshProUGUI SunText;
 
     void Update()
     {
@@ -36,7 +36,7 @@ public class PlantPlacementController : MonoBehaviour
             if (tile == null || tile.isOccupied) return;
 
            Plants plantPrefab = availablePlants[selectedPlantIndex];
-            if (plantPrefab.CheckPrice() == false) return;
+            //if (plantPrefab.CheckPrice() == false) return;
 
             plantPrefab.Buy();
             tile.isOccupied = true;
@@ -46,6 +46,8 @@ public class PlantPlacementController : MonoBehaviour
                 tile.plantAnchor.position,
                 Quaternion.identity
             );
+
+            Debug.Log($"Placed plant: {plantPrefab.name}");
         }
     }
 }
