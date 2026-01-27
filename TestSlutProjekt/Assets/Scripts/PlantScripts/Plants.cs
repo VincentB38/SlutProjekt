@@ -32,7 +32,7 @@ public class Plants : MonoBehaviour
 
     public bool CheckPrice()
     {
-        if (playerStats.GetMoney() >= price) // Checks if player has enough money
+        if (playerStats.GetSun() >= price) // Checks if player has enough money
         {
             return true; // Sends a true value to the placement script to allow placement
         }

@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    private int money;
+    private int sun;
     [SerializeField] private int gainMoney;
 
     private int level;
     private int maxLevel;
 
-    private float timer;
+    [SerializeField] private float timer;
 
     // Make money increase slowly through time, possible to add multiplier to the time it takes to generate money
     
@@ -24,12 +24,12 @@ public class PlayerStats : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(MoneyFlow()); // Gives money through specific intervals
+        StartCoroutine(MoneyFlow()); // Gives sun(money) through specific intervals
     }
 
-    IEnumerator MoneyFlow()
+    IEnumerator MoneyFlow() // Sunlight basically
     {
-        money += gainMoney;
+        sun += gainMoney;
         yield return new WaitForSeconds(timer);
     }
 
@@ -49,13 +49,13 @@ public class PlayerStats : MonoBehaviour
         return PlayerPrefs.GetInt("PlayerLevel");
     }
 
-    public int GetMoney()
+    public int GetSun()
     {
-        return money;
+        return sun;
     }
 
     public void ChangeMoney(int amount)
     {
-        money += amount;
+        sun += amount;
     }
 }
