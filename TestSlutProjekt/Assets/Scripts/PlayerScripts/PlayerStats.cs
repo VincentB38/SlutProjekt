@@ -18,19 +18,22 @@ public class PlayerStats : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        StartCoroutine(MoneyFlow()); // Gives sun(money) through specific intervals
     }
 
     // Update is called once per frame
     void Update()
     {
-        StartCoroutine(MoneyFlow()); // Gives sun(money) through specific intervals
+
     }
 
     IEnumerator MoneyFlow() // Sunlight basically
     {
-        sun += gainMoney;
-        yield return new WaitForSeconds(timer);
+        while (true)
+        {
+            sun += gainMoney;
+            yield return new WaitForSeconds(timer);
+        }
     }
 
     public void SetLevel(int level)
