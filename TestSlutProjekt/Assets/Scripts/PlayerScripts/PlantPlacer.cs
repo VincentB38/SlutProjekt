@@ -25,7 +25,7 @@ public class PlantPlacementController : MonoBehaviour
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
-        // Change selected plant (number keys)
+        // Change selected plant with number keys
         for (int i = 0; i < availablePlants.Length && i < numberKeys.Length; i++)
         {
             if (Keyboard.current[numberKeys[i]].wasPressedThisFrame)
