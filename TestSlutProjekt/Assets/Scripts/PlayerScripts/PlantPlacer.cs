@@ -6,6 +6,7 @@ public class PlantPlacementController : MonoBehaviour
 {
     [Header("Plants")]
     public Plants[] availablePlants;   // assign prefabs in inspector
+    public GameObject PlantHolder;
     public int selectedPlantIndex = 0;
 
     [Header("Placement")]
@@ -69,7 +70,7 @@ public class PlantPlacementController : MonoBehaviour
            // plantPrefab.Buy();
             tile.isOccupied = true;
 
-            Instantiate(plantPrefab, tile.plantAnchor.position, Quaternion.identity);
+            Instantiate(plantPrefab, tile.plantAnchor.position, Quaternion.identity, PlantHolder.transform);
 
             Debug.Log($"Placed plant: {plantPrefab.name}");
         }
