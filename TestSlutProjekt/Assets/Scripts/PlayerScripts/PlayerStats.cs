@@ -11,14 +11,12 @@ public class PlayerStats : MonoBehaviour
     private int maxLevel;
 
     [SerializeField] private float timer;
-
-    // Make money increase slowly through time, possible to add multiplier to the time it takes to generate money
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        StartCoroutine(MoneyFlow()); // Gives sun(money) through specific intervals
+        StartCoroutine(MoneyFlow()); // Gives sun(money) between intervals
     }
 
     // Update is called once per frame

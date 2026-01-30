@@ -3,17 +3,17 @@ using UnityEngine;
 
 public class Plants : MonoBehaviour
 {
-    string name;
+    string pName; // Plant name, pName is a result of a fix from random errors
     int price;
     float health;
 
-    Transform playerTransform;
+    protected Transform playerTransform;
     PlayerStats playerStats;
 
     // Function that basically replaces a constructor since we are using prefabs with subclasses integrated
-    public void SetValues(string name, int price, float health, Transform playerTransform)
+    public virtual void SetValues(string name, int price, float health, Transform playerTransform)
     {
-        this.name = name;
+        this.pName = name;
         this.price = price;
         this.health = health;
         this.playerTransform = playerTransform;
@@ -52,7 +52,7 @@ public class Plants : MonoBehaviour
     #region GetFunctions
     public string GetName()
     {
-        return name;
+        return pName;
     }
 
     public int GetPrice()
