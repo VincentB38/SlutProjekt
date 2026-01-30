@@ -1,16 +1,24 @@
+using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 
-public class PassivePlant : MonoBehaviour
+public class PassivePlant : Plants
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    [SerializeField] private string name;
+    [SerializeField] private int price;
+    [SerializeField] private float health;
+    [SerializeField] private float timer; // Change name
+
+    [SerializeField] private bool generatesSun;
+
+    public void GenerateSun()
     {
-        
+
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator MoneyFlow() // Sunlight basically
     {
-        
+        //sun += gainMoney;
+        yield return new WaitForSeconds(timer);
     }
 }
