@@ -9,6 +9,7 @@ public class EnemyHandler : MonoBehaviour
     public float Speed = 2f;
     public float Damage = 2f;
     public float AttackDistance = 10f;
+    public int Line;
     protected virtual void Awake()
     {
         EnemyBody = GetComponent<Rigidbody2D>();
@@ -21,6 +22,10 @@ public class EnemyHandler : MonoBehaviour
         EnemyBody.linearVelocity = new Vector2(-Speed, 0);
     }
 
+    public int GetEnemyLane() // Use to find which lane the enemy is on
+    {
+        return Line;
+    }
     public virtual void TakeDamage(float amount)
     {
         Health -= amount;
