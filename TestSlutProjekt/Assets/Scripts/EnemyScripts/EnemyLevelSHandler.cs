@@ -178,8 +178,6 @@ public class EnemyLevelSHandler : MonoBehaviour
 
         enemy.GetComponent<EnemyHandler>().Line = int.Parse(spawnPoint.name); // Set the enemies lane based of the spawnpoint name
 
-        //EnemyTracker tracker = enemy.AddComponent<EnemyTracker>();
-      //  tracker.spawner = this;
     }
 
     public void OnEnemyDestroyed() // When enemy dies
