@@ -70,7 +70,7 @@ public class PlantPlacementController : MonoBehaviour
            // plantPrefab.Buy();
             tile.isOccupied = true;
 
-            Instantiate(plantPrefab, tile.plantAnchor.position, Quaternion.identity, PlantHolder.transform);
+            Instantiate(plantPrefab, tile.plantAnchor.position + new Vector3(0,0,-1), Quaternion.identity, PlantHolder.transform);
 
             Debug.Log($"Placed plant: {plantPrefab.name}");
         }
