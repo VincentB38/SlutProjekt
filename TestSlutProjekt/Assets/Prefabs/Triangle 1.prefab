@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 398616667148943513}
   - component: {fileID: 1972368275694595216}
   - component: {fileID: -3407775936666238185}
+  - component: {fileID: 7843479867537506059}
   m_Layer: 6
   m_Name: Triangle 1
   m_TagString: Untagged
@@ -150,3 +151,23 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &7843479867537506059
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962529009191790329}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7031986cd063b8c45a7dafea6524a219, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassivePlant
+  plantName: SunFlower
+  plantPrice: 0
+  plantHealth: 0
+  minimumInterval: 0
+  maximumInterval: 0
+  sunPrefab: {fileID: 0}
+  sunFolder: {fileID: 0}
+  generatesSun: 1
