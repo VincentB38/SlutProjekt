@@ -17,7 +17,7 @@ public class PassivePlant : Plants
     public float minimumInterval;
     public float maximumInterval;
     public GameObject sunPrefab; 
-    public GameObject sunFolder; 
+    GameObject sunFolder; 
 
     [SerializeField] private bool generatesSun;
 
@@ -26,6 +26,9 @@ public class PassivePlant : Plants
     private void Start()
     {
         SetValues(plantName, this.plantPrice, plantHealth, transform);
+
+        sunFolder = GameObject.Find("SunFolder");
+        sunPrefab = GameObject.Find("PlantHolder");
 
         if (generatesSun)
         {

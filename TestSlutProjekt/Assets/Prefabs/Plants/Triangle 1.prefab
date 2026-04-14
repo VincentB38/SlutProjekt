@@ -165,9 +165,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PassivePlant
   plantName: SunFlower
   plantPrice: 0
-  plantHealth: 0
-  minimumInterval: 0
-  maximumInterval: 0
-  sunPrefab: {fileID: 0}
-  sunFolder: {fileID: 0}
+  plantHealth: 50
+  minimumInterval: 1
+  maximumInterval: 3
+  sunPrefab: {fileID: 5581328799659411653, guid: 36e9e8d737cb4d74ca78fba0c693984e, type: 3}
   generatesSun: 1
