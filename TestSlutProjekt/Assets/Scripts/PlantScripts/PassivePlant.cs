@@ -28,7 +28,6 @@ public class PassivePlant : Plants
         SetValues(plantName, this.plantPrice, plantHealth, transform);
 
         sunFolder = GameObject.Find("SunFolder");
-        sunPrefab = GameObject.Find("PlantHolder");
 
         if (generatesSun)
         {
