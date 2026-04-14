@@ -1,4 +1,5 @@
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,6 +9,7 @@ public class PlantPlacementController : MonoBehaviour
     public Plants[] availablePlants;
     public GameObject PlantHolder;
     public int selectedPlantIndex = 0;
+    private GameObject currentPreview;
 
     [Header("Placement")]
     [SerializeField] LayerMask tileLayer;
@@ -31,30 +33,48 @@ public class PlantPlacementController : MonoBehaviour
         {
             if (Keyboard.current[numberKeys[i]].wasPressedThisFrame)
             {
-                if (i == selectedPlantIndex) // If you click the same key then deselect
+                if (currentPreview != null)
                 {
+                    Destroy(currentPreview); // Destroy the preview if it was being used
+                }
+
+                if (i == selectedPlantIndex)
+                {
+                    selectedPlantIndex = 10; // deselect
                     Debug.Log($"Deselected plant index: {i}");
-                    selectedPlantIndex = 10; // set to 10 to have no Paper plant selected
                 }
                 else
                 {
-                    selectedPlantIndex = i; // Select different Paper plant
+                    selectedPlantIndex = i;
                     Debug.Log($"Selected plant index: {i}");
+
+                    // Create preview
+                    Plants plantPrefab = availablePlants[selectedPlantIndex];
+                    currentPreview = Instantiate(plantPrefab.gameObject);
+
+                    SetTransparency(currentPreview, 0.5f);
+
+                    foreach (var script in currentPreview.GetComponentsInChildren<MonoBehaviour>()) // Disable scripts to prevent the plants attacking etc
+                    {
+                        script.enabled = false;
+                    }
+
+                    // Disable colliders so it doesn't block placement
+                    foreach (var col in currentPreview.GetComponentsInChildren<Collider2D>())
+                    {
+                        col.enabled = false;
+                    }
                 }
             }
         }
 
+        Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // Convert mouse position
+        mousePos3D.z = 0f;
+        Vector2 mousePos2D = mousePos3D;
+        Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer);// see if the mouse is on the tiler
         // Place plant
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
-
-            // Convert mouse position
-            Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
-            mousePos3D.z = 0f;
-            Vector2 mousePos2D = mousePos3D;
-
-            Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer); // see if the mouse is on the tiler
-
             if (tileCol == null) // if no tile is under the mouse
             {
                 Debug.Log("No tile detected under mouse!");
@@ -68,7 +88,7 @@ public class PlantPlacementController : MonoBehaviour
                 return;
             }
 
-            if (selectedPlantIndex <= availablePlants.Length) // make sure the plant exists
+            if (selectedPlantIndex < availablePlants.Length) // make sure the plant exists
             {
                 Plants plantPrefab = availablePlants[selectedPlantIndex]; // find the plant prefab
 
@@ -87,6 +107,40 @@ public class PlantPlacementController : MonoBehaviour
                 Debug.Log($"Placed plant: {plantPrefab.name}");
             }
 
+        }
+
+        if (currentPreview != null) // if the preview is being used
+        {
+            if (tileCol) // if the tile is under the mouse
+            {
+                PlantTile tile = tileCol.GetComponent<PlantTile>();
+
+                if (tile != null && !tile.isOccupied)
+                {
+                    currentPreview.SetActive(true); // make it show
+                    currentPreview.transform.position = tile.plantAnchor.position + new Vector3(0, 0, -1);
+
+                    SetTransparency(currentPreview, 0.5f); // send the preview and make it half transparent
+                }
+                else
+                {
+                    currentPreview.SetActive(false); // make preview hide
+                }
+            }
+            else
+            {
+                currentPreview.SetActive(false); // if no tile under mouse then hide
+            }
+        }
+    }
+
+    void SetTransparency(GameObject obj, float alpha) // make it semi trasnparent
+    {
+        foreach (var renderer in obj.GetComponentsInChildren<SpriteRenderer>())
+        {
+            Color c = renderer.color;
+            c.a = alpha;
+            renderer.color = c;
         }
     }
 }
