@@ -58,7 +58,7 @@ public class Plants : MonoBehaviour
     #region GetFunctions
     public string GetName()
     {
-        return pName;
+        return name;
     }
 
     public int GetPrice()

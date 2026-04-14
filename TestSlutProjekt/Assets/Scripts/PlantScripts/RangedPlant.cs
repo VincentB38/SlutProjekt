@@ -25,8 +25,6 @@ public class RangedPlant : AggresivePlant
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        SetValues(plantName, plantPrice, plantHealth, transform);
-
         if (fireRate <= 0) fireRate = 1f; // Just in case, using while loops can cause crashable errors
     }
 

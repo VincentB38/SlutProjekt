@@ -25,7 +25,6 @@ public class PassivePlant : Plants
 
     private void Start()
     {
-        SetValues(plantName, this.plantPrice, plantHealth, transform);
 
         sunFolder = GameObject.Find("SunFolder");
 
