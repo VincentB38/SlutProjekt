@@ -5,7 +5,7 @@ using UnityEngine.InputSystem;
 public class PlantPlacementController : MonoBehaviour
 {
     [Header("Plants")]
-    public Plants[] availablePlants;   // assign prefabs in inspector
+    public Plants[] availablePlants;
     public GameObject PlantHolder;
     public int selectedPlantIndex = 0;
 
@@ -17,12 +17,12 @@ public class PlantPlacementController : MonoBehaviour
 
     private void Start()
     {
-        numberKeys = new Key[] {Key.Digit1, Key.Digit2,Key.Digit3,Key.Digit4,Key.Digit5,Key.Digit6,Key.Digit7,Key.Digit8,Key.Digit9};
+        numberKeys = new Key[] {Key.Digit1, Key.Digit2,Key.Digit3,Key.Digit4,Key.Digit5,Key.Digit6,Key.Digit7,Key.Digit8,Key.Digit9}; // keybinds for plants
     }
 
     void Update()
     {
-        SunText.text = $"Sun: {transform.GetComponent<PlayerStats>().GetSun()}"; // amount of sun you have
+        SunText.text = $"Paper: {transform.GetComponent<PlayerStats>().GetSun()}"; // amount of sun you have
 
         Vector2 mousePos = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue());
 
@@ -31,8 +31,16 @@ public class PlantPlacementController : MonoBehaviour
         {
             if (Keyboard.current[numberKeys[i]].wasPressedThisFrame)
             {
-                selectedPlantIndex = i;
-                Debug.Log($"Selected plant index: {i}");
+                if (i == selectedPlantIndex) // If you click the same key then deselect
+                {
+                    Debug.Log($"Deselected plant index: {i}");
+                    selectedPlantIndex = 10; // set to 10 to have no Paper plant selected
+                }
+                else
+                {
+                    selectedPlantIndex = i; // Select different Paper plant
+                    Debug.Log($"Selected plant index: {i}");
+                }
             }
         }
 
@@ -45,34 +53,40 @@ public class PlantPlacementController : MonoBehaviour
             mousePos3D.z = 0f;
             Vector2 mousePos2D = mousePos3D;
 
-            Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer);
+            Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer); // see if the mouse is on the tiler
 
-            if (tileCol == null)
+            if (tileCol == null) // if no tile is under the mouse
             {
                 Debug.Log("No tile detected under mouse!");
                 return;
             }
 
-            PlantTile tile = tileCol.GetComponent<PlantTile>();
-            if (tile == null || tile.isOccupied)
+            PlantTile tile = tileCol.GetComponent<PlantTile>(); // get the plant tile
+            if (tile == null || tile.isOccupied) // if no tile or the tile is already being used
             {
                 Debug.Log("Tile invalid or occupied!");
                 return;
             }
 
-            Plants plantPrefab = availablePlants[selectedPlantIndex];
-            //if (!plantPrefab.CheckPrice())
-           // {
-            //    Debug.Log("Not enough sun to place plant!");
-              //  return;
-           // }
+            if (selectedPlantIndex <= availablePlants.Length) // make sure the plant exists
+            {
+                Plants plantPrefab = availablePlants[selectedPlantIndex]; // find the plant prefab
 
-           // plantPrefab.Buy();
-            tile.isOccupied = true;
+                //if (!plantPrefab.CheckPrice())
+                // {
+                //    Debug.Log("Not enough sun to place plant!");
+                //  return;
+                // }
 
-            Instantiate(plantPrefab, tile.plantAnchor.position + new Vector3(0,0,-1), Quaternion.identity, PlantHolder.transform);
+                // plantPrefab.Buy();
 
-            Debug.Log($"Placed plant: {plantPrefab.name}");
+                tile.isOccupied = true; // tile is being used
+
+                Instantiate(plantPrefab, tile.plantAnchor.position + new Vector3(0, 0, -1), Quaternion.identity, PlantHolder.transform); // spawn in the plant
+
+                Debug.Log($"Placed plant: {plantPrefab.name}");
+            }
+
         }
     }
 }
