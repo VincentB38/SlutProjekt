@@ -12,21 +12,18 @@ public class Plants : MonoBehaviour
 
     private void Start()
     {
-        try
+        try // Tries to get instance of playerstats
         {
             playerStats = PlayerStats.Instance;
         }
-    }
-
-
-    // Function that basically replaces a constructor since we are using prefabs with subclasses integrated
-    public virtual void SetValues(string name, int price, float health, Transform playerTransform)
-    {
-        this.pName = name;
-        this.price = price;
-        this.health = health;
-        this.playerTransform = playerTransform;
-        playerStats = playerTransform.GetComponent<PlayerStats>();
+        catch (System.NullReferenceException)
+        {
+            Debug.Log("Playerstats variable in Plants failed to get Instance");
+        }
+        catch (System.Exception e)
+        {
+            Debug.LogException(e);
+        }
     }
 
     // Function to change health
