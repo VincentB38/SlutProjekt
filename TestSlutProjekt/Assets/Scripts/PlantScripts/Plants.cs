@@ -3,12 +3,21 @@ using UnityEngine;
 
 public class Plants : MonoBehaviour
 {
-    string pName; // Plant name, pName is a result of a fix from random errors
-    int price;
-    float health;
+    public string name; // Remove name var. from other subclasses
+    public int price;
+    public float health;
 
     protected Transform playerTransform;
     PlayerStats playerStats;
+
+    private void Start()
+    {
+        try
+        {
+            playerStats = PlayerStats.Instance;
+        }
+    }
+
 
     // Function that basically replaces a constructor since we are using prefabs with subclasses integrated
     public virtual void SetValues(string name, int price, float health, Transform playerTransform)

@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
+    static public PlayerStats Instance;
+
     private int sun;
     [SerializeField] private int gainMoney;
 
@@ -16,6 +18,8 @@ public class PlayerStats : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        Instance = this;
+
         StartCoroutine(MoneyFlow()); // Gives sun(money) between intervals
     }
 
