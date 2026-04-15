@@ -16,11 +16,11 @@ public class Plants : MonoBehaviour
         {
             playerStats = PlayerStats.Instance;
         }
-        catch (System.NullReferenceException)
+        catch (System.NullReferenceException) // Catches if it doesnt get assigned
         {
             Debug.Log("Playerstats variable in Plants failed to get Instance");
         }
-        catch (System.Exception e)
+        catch (System.Exception e) // In case other unexpected exceptions occur
         {
             Debug.LogException(e);
         }
