@@ -2,7 +2,7 @@ using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
-public class RangedPlant : AggresivePlant
+public class OffensePlant : Plants
 {
     [Header("General")]
     public string plantName;
@@ -46,7 +46,7 @@ public class RangedPlant : AggresivePlant
         }
     }
 
-    public override void Attack()
+    public void Attack()
     {
         GameObject tempBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletFolder.transform);
         tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed;

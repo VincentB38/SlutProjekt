@@ -3,12 +3,17 @@ using UnityEngine;
 
 public class Plants : MonoBehaviour
 {
-    public string name; // Remove name var. from other subclasses
-    public int price;
-    public float health;
+    /*
+     * Add sprite and animation logic inside here
+     */
+
+    [Header("General")] // General Variables
+    [SerializeField] private string name;
+    [SerializeField] private int price;
+    [SerializeField] private float health;
 
     protected Transform playerTransform;
-    PlayerStats playerStats;
+    PlayerStats playerStats; // PlayerStats instance
 
     private void Start()
     {
@@ -27,7 +32,7 @@ public class Plants : MonoBehaviour
     }
 
     // Function to change health
-    public void ChangeHealth(float amount)
+    public void ChangeHealth(float amount) // Vincent said something about the need to set a var. before death.
     {
         health += amount;
 
@@ -49,7 +54,7 @@ public class Plants : MonoBehaviour
         }
     }
 
-    public void Buy()
+    public void Buy() // Efficient way to reduce price without needing other variables
     {
         playerStats.ChangeMoney(-price);
     }

@@ -1,45 +1,15 @@
 using System;
 using System.Collections;
 using Unity.Mathematics;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PassivePlant : Plants
 {
-    [Header("General")]
-    public string plantName;
-    public int plantPrice;
-    public float plantHealth;
+    // Interval for the coroutine which will be randomized
+    [SerializeField] protected Vector2 timeRangeInterval = new Vector2(1f, 2f);
 
-    // Variables for visuals
-
-    [Header("SunflowerSettings")]
-    public float minimumInterval;
-    public float maximumInterval;
-    public GameObject sunPrefab; 
-    GameObject sunFolder; 
-
-    [SerializeField] private bool generatesSun;
-
-    // Add animation / animator logic
-
-    private void Start()
+    protected virtual IEnumerator Generate()
     {
-
-        sunFolder = GameObject.Find("SunFolder");
-
-        if (generatesSun)
-        {
-            StartCoroutine(GenerateSun());
-        }
-    }
-
-    IEnumerator GenerateSun() // Sunlight generates, spawns clickable prefab
-    {
-        while (true)
-        {
-            Instantiate(sunPrefab, transform.position, Quaternion.identity, sunFolder.transform);
-            yield return new WaitForSeconds(UnityEngine.Random.Range(minimumInterval, maximumInterval));
-        }
+        return null;
     }
 }
