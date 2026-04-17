@@ -3,15 +3,23 @@ using UnityEngine;
 public class LevelMapManager : MonoBehaviour
 {
     public LevelPart[] levelParts;
+    public PathGenerator pathGenerator;
 
     void Start()
     {
         int levelIndex = PlayerPrefs.GetInt("PlayerLevel", 0);
 
-        for (int i = 0; i < levelParts.Length; i++)
+        // unlock levels
+        for (int i = 0; i < levelParts.Length; i++) // Loop through
         {
-            if (i <= levelIndex)
-                levelParts[i].Unlock();
+            if (i >= levelIndex) // if i is more or equal to level index means you unlocked it
+                levelParts[i].Unlock(); // disable the lock
+        }
+
+        if (pathGenerator != null)
+        {
+            pathGenerator.maxLevelIndex = levelIndex; // Let the path generator know the length it should do
+            pathGenerator.Play(); // Start it
         }
     }
 }

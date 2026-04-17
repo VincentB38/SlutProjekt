@@ -7,7 +7,7 @@ public class PathGenerator : MonoBehaviour
     [System.Serializable]
     public class LevelNode
     {
-        public Transform startPoint;
+        public Transform startPoint; // to drag in every level 
     }
 
     public List<LevelNode> levels = new List<LevelNode>();
@@ -16,7 +16,8 @@ public class PathGenerator : MonoBehaviour
 
     public int segments = 20;
     public float amplitude = 0.5f;
-    public float duration = 1.2f;
+    public float duration = 1.2f; // how long it should take
+    public int maxLevelIndex = 0; // to show max
 
     private List<Vector3> points = new List<Vector3>();
 
@@ -34,7 +35,7 @@ public class PathGenerator : MonoBehaviour
     {
         points.Clear();
 
-        for (int i = 0; i < levels.Count - 1; i++)
+        for (int i = 0; i < Mathf.Min(maxLevelIndex, levels.Count - 1); i++)
         {
             Vector3 start = levels[i].startPoint.position;
             Vector3 end = levels[i + 1].startPoint.position;
@@ -94,7 +95,7 @@ public class PathGenerator : MonoBehaviour
             yield return null;
         }
 
-        // FINAL SNAP (important)
+        // final snap
         lineRenderer.positionCount = total;
 
         for (int i = 0; i < total; i++)

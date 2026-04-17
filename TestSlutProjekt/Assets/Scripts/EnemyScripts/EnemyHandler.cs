@@ -2,14 +2,13 @@ using UnityEngine;
 
 public class EnemyHandler : MonoBehaviour
 {
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     public Rigidbody2D EnemyBody { get; private set; }
     private GameObject GameHandler;
-    public float Health = 10f;
+    public float Health = 10f; // Stats for the enemies
     public float Speed = 2f;
     public float Damage = 2f;
     public float AttackDistance = 10f;
-    public int Line;
+    public int Line; // get what lane the enemy is in 
     protected virtual void Awake()
     {
         EnemyBody = GetComponent<Rigidbody2D>();
@@ -26,7 +25,7 @@ public class EnemyHandler : MonoBehaviour
     {
         return Line;
     }
-    public virtual void TakeDamage(float amount)
+    public virtual void TakeDamage(float amount) // Deal Damage
     {
         Health -= amount;
         if (Health <= 0)
