@@ -224,9 +224,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaperParticle
   speed: 5
-  height: 2
-  width: 2
-  falloffTime: 1.5
+  heightInterval: {x: 2, y: 4}
+  fallDistanceInterval: {x: -2, y: -1}
 --- !u!50 &807541020
 Rigidbody2D:
   serializedVersion: 5
