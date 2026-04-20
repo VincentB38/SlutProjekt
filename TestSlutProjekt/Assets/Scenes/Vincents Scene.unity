@@ -749,8 +749,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlantPlacementController
   availablePlants:
-  - {fileID: 1972368275694595216, guid: 86a691bb28e37f54780e4a90090bb9db, type: 3}
-  - {fileID: 1972368275694595216, guid: ff46cca1aa363d04cbd0b823ad6accd9, type: 3}
+  - {fileID: -8085617028151263930, guid: 86a691bb28e37f54780e4a90090bb9db, type: 3}
+  - {fileID: 7843479867537506059, guid: ff46cca1aa363d04cbd0b823ad6accd9, type: 3}
   PlantHolder: {fileID: 562861123}
   selectedPlantIndex: 0
   tileLayer:

@@ -10,8 +10,8 @@ GameObject:
   m_Component:
   - component: {fileID: 9047989383050429927}
   - component: {fileID: 398616667148943513}
-  - component: {fileID: 1972368275694595216}
   - component: {fileID: -3407775936666238185}
+  - component: {fileID: -8085617028151263930}
   m_Layer: 6
   m_Name: Triangle
   m_TagString: Untagged
@@ -92,18 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1972368275694595216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962529009191790329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a4d3ed5508ce848a0eaf5b09a941e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Plants
 --- !u!61 &-3407775936666238185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -150,3 +138,19 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &-8085617028151263930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962529009191790329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ed590ef013ed9ef4cbdd99db81a697f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PassivePlant
+  plantName: Testing
+  price: 67
+  health: 10
+  timeRangeInterval: {x: 1, y: 2}

@@ -52,7 +52,7 @@ public class PlantPlacementController : MonoBehaviour
                     Plants plantPrefab = availablePlants[selectedPlantIndex];
                     currentPreview = Instantiate(plantPrefab.gameObject);
 
-                    SetTransparency(currentPreview, 0.5f);
+                    SetTransparency(currentPreview, 0.5f); // sets trasnperancy to 0.5
 
                     foreach (var script in currentPreview.GetComponentsInChildren<MonoBehaviour>()) // Disable scripts to prevent the plants attacking etc
                     {
@@ -71,8 +71,9 @@ public class PlantPlacementController : MonoBehaviour
         Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // Convert mouse position
         mousePos3D.z = 0f;
         Vector2 mousePos2D = mousePos3D;
-        Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer);// see if the mouse is on the tiler
+        Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer);// see if the mouse is on the tile
         // Place plant
+        print(tileCol);
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (tileCol == null) // if no tile is under the mouse
@@ -92,15 +93,16 @@ public class PlantPlacementController : MonoBehaviour
             {
                 Plants plantPrefab = availablePlants[selectedPlantIndex]; // find the plant prefab
 
-                //if (!plantPrefab.CheckPrice())
-                // {
-                //    Debug.Log("Not enough sun to place plant!");
-                //  return;
-                // }
+                if (!plantPrefab.CheckPrice()) // check if the player does not have enough
+                 {
+                    Debug.Log("Not enough paper to place plant!");
+                  return; // skip the rest
+                 }
 
-                // plantPrefab.Buy();
+                plantPrefab.Buy(); // buy the plant
 
                 tile.isOccupied = true; // tile is being used
+                plantPrefab.SetTile(tile); // Assigns the tile variable to federicos code
 
                 Instantiate(plantPrefab, tile.plantAnchor.position + new Vector3(0, 0, -1), Quaternion.identity, PlantHolder.transform); // spawn in the plant
 

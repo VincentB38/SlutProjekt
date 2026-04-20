@@ -10,7 +10,6 @@ GameObject:
   m_Component:
   - component: {fileID: 9047989383050429927}
   - component: {fileID: 398616667148943513}
-  - component: {fileID: 1972368275694595216}
   - component: {fileID: -3407775936666238185}
   - component: {fileID: 7843479867537506059}
   m_Layer: 6
@@ -93,18 +92,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &1972368275694595216
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 962529009191790329}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f3a4d3ed5508ce848a0eaf5b09a941e9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::Plants
 --- !u!61 &-3407775936666238185
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -164,9 +151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassivePlant
   plantName: SunFlower
-  plantPrice: 0
-  plantHealth: 50
-  minimumInterval: 1
-  maximumInterval: 3
-  sunPrefab: {fileID: 5581328799659411653, guid: 36e9e8d737cb4d74ca78fba0c693984e, type: 3}
-  generatesSun: 1
+  price: 100
+  health: 10
+  timeRangeInterval: {x: 1, y: 2}
+  paperPrefab: {fileID: 0}
+  paperFolder: {fileID: 0}
