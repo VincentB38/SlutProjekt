@@ -1,11 +1,13 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PaperParticle : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Vector2 heightInterval;
     [SerializeField] private Vector2 fallDistanceInterval;
+    [SerializeField] private LayerMask paperParticleLayer;
 
     bool animHasPlayed;
 
@@ -21,6 +23,14 @@ public class PaperParticle : MonoBehaviour
     void Update() // This not working correctly when instanced from the plant flower
     {
         if (!animHasPlayed) JumpAnim();
+    }
+
+    void SelectPaper()
+    {
+        Vector3 mousePos3D = Camera.main.ScreenToWorldPoint(Mouse.current.position.ReadValue()); // Convert mouse position
+        mousePos3D.z = 0f;
+        Vector2 mousePos2D = mousePos3D;
+        Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, paperParticleLayer);// Checks if mouse is above particle
     }
 
     void JumpAnim() // Fix everything

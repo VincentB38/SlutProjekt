@@ -129,7 +129,6 @@ GameObject:
   m_Component:
   - component: {fileID: 807541018}
   - component: {fileID: 807541017}
-  - component: {fileID: 807541020}
   - component: {fileID: 807541019}
   m_Layer: 0
   m_Name: Paper
@@ -226,33 +225,9 @@ MonoBehaviour:
   speed: 5
   heightInterval: {x: 2, y: 4}
   fallDistanceInterval: {x: -2, y: -1}
---- !u!50 &807541020
-Rigidbody2D:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 807541016}
-  m_BodyType: 0
-  m_Simulated: 1
-  m_UseFullKinematicContacts: 0
-  m_UseAutoMass: 0
-  m_Mass: 1
-  m_LinearDamping: 0
-  m_AngularDamping: 0.05
-  m_GravityScale: 0.5
-  m_Material: {fileID: 0}
-  m_IncludeLayers:
+  paperParticleLayer:
     serializedVersion: 2
     m_Bits: 0
-  m_ExcludeLayers:
-    serializedVersion: 2
-    m_Bits: 0
-  m_Interpolate: 0
-  m_SleepingMode: 1
-  m_CollisionDetection: 0
-  m_Constraints: 0
 --- !u!1 &941977936
 GameObject:
   m_ObjectHideFlags: 0
@@ -438,7 +413,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!212 &1512956248
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -524,7 +499,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7031986cd063b8c45a7dafea6524a219, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PaperFlower
-  name: PaperFlower
+  plantName: 
   price: 10
   health: 10
   timeRangeInterval: {x: 1, y: 3}
