@@ -73,6 +73,7 @@ public class PlantPlacementController : MonoBehaviour
         Vector2 mousePos2D = mousePos3D;
         Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, tileLayer);// see if the mouse is on the tile
         // Place plant
+        print(tileCol);
         if (Mouse.current.leftButton.wasPressedThisFrame)
         {
             if (tileCol == null) // if no tile is under the mouse
