@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PathGenerator : MonoBehaviour
+public class PathGenerator : MonoBehaviour // make it wavy if we got time 
 {
     [System.Serializable]
     public class LevelNode
@@ -15,7 +15,6 @@ public class PathGenerator : MonoBehaviour
     public LineRenderer lineRenderer;
 
     public int segments = 20;
-    public float amplitude = 0.5f;
     public float duration = 1.2f; // how long it should take
     public int maxLevelIndex = 0; // to show max
 
@@ -23,7 +22,7 @@ public class PathGenerator : MonoBehaviour
 
     private void Start()
     {
-        Play();
+        Play(); // the initial start
     }
     public void Play(System.Action onComplete = null)
     {
@@ -50,10 +49,7 @@ public class PathGenerator : MonoBehaviour
 
                 Vector3 basePoint = start + direction * distance * t;
 
-                float offset = Mathf.Sin(t * Mathf.PI * segments) * amplitude;
-                offset += Random.Range(-0.1f, 0.1f);
-
-                points.Add(basePoint + perpendicular * offset);
+                points.Add(basePoint + perpendicular);
             }
         }
     }
@@ -86,7 +82,6 @@ public class PathGenerator : MonoBehaviour
 
             for (int i = 0; i < visible; i++)
             {
-                // extra safety (prevents ANY race condition crash)
                 if (i >= points.Count) break;
 
                 lineRenderer.SetPosition(i, points[i]);
