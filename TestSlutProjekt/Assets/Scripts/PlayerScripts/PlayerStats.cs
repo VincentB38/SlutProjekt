@@ -12,7 +12,7 @@ public class PlayerStats : MonoBehaviour
     private int level;
     private int maxLevel;
 
-    [SerializeField] private float timer;
+    [SerializeField] private float timer = 0.5f;
     
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

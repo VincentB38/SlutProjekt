@@ -1,4 +1,5 @@
 using System.Collections;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -6,10 +7,10 @@ public class PaperParticle : MonoBehaviour
 {
     [SerializeField] private float speed;
     [SerializeField] private Vector2 heightInterval;
-    [SerializeField] private Vector2 fallDistanceInterval;
-    [SerializeField] private LayerMask paperParticleLayer;
+    [SerializeField] private Vector2 widthInterval;
 
-    bool animHasPlayed;
+    [SerializeField] private int moneyGain;
+    [SerializeField] private LayerMask paperParticleLayer;
 
     private float x;
 
@@ -17,12 +18,14 @@ public class PaperParticle : MonoBehaviour
     void Start()
     {
         x = transform.localPosition.x;
+
+        StartCoroutine(JumpAnim());
     }
 
     // Update is called once per frame
     void Update() // This not working correctly when instanced from the plant flower
     {
-        if (!animHasPlayed) JumpAnim();
+        SelectPaper();
     }
 
     void SelectPaper()
@@ -31,22 +34,56 @@ public class PaperParticle : MonoBehaviour
         mousePos3D.z = 0f;
         Vector2 mousePos2D = mousePos3D;
         Collider2D tileCol = Physics2D.OverlapPoint(mousePos2D, paperParticleLayer);// Checks if mouse is above particle
+
+        if (Mouse.current.leftButton.wasPressedThisFrame)
+        {
+            if (tileCol != null)
+            {
+                // Gets this specific script
+                PaperParticle paper = tileCol.GetComponent<PaperParticle>();
+
+                if (paper != null)
+                {
+                    paper.CollectPaper(); // Calls this function specifically on this object
+                }
+            }
+        }
     }
 
-    void JumpAnim() // Fix everything
+    void CollectPaper()
     {
-        // Calculate X
-        x += speed * Time.deltaTime;
+        Debug.Log("Collected Paper");
+        PlayerStats.Instance.ChangeMoney(moneyGain);
 
-        // Calculate y by using randomized height and randomized x-axis
-        float y = -Mathf.Pow(x, 2) + (Random.Range(heightInterval.x, heightInterval.y) * Random.Range(-1f, 1f)) * x;
+        GameObject.Destroy(gameObject);
+    }
 
-        // Update position
-        transform.localPosition = new Vector2(x, y);
+    IEnumerator JumpAnim() // Used math instead of rigidbody because it gives a bit more control
+    {
+        float duration = Random.Range(0.8f, 1.5f) / speed; // Higher speed lowers duration which later increases speed in the movement
+        float time = 0f;
 
-        if (transform.localPosition.y > Random.Range(fallDistanceInterval.x, fallDistanceInterval.y))
+        Vector2 startPos = transform.localPosition; // Starting pos
+
+        float distanceX = Random.Range(widthInterval.x, widthInterval.y); // Which direction on the x axis as well as how far
+
+        // Make it so it can not be smaller than -0.5 to 0.5 on the x axis, so it always lands beside
+
+        float height = Random.Range(heightInterval.x, heightInterval.y); // How high the particle will go
+
+        while (time < duration)
         {
-            animHasPlayed = true;
+            time += Time.deltaTime; // Makes it possible to move across an equation
+            float t = time / duration; // 0 - 1
+
+            float x = Mathf.Lerp(0, distanceX, t); // Moves x on a linear path
+
+            // Using Equation to calculate where it will be
+            float y = 4 * height * t * (1 - t);
+
+            transform.localPosition = startPos + new Vector2(x, y); // Sets new position based on the equation
+
+            yield return null;
         }
     }
 }

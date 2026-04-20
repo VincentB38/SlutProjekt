@@ -130,7 +130,8 @@ GameObject:
   - component: {fileID: 807541018}
   - component: {fileID: 807541017}
   - component: {fileID: 807541019}
-  m_Layer: 0
+  - component: {fileID: 807541020}
+  m_Layer: 7
   m_Name: Paper
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -224,10 +225,57 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PaperParticle
   speed: 5
   heightInterval: {x: 2, y: 4}
-  fallDistanceInterval: {x: -2, y: -1}
+  widthInterval: {x: 0, y: 0}
+  moneyGain: 0
   paperParticleLayer:
     serializedVersion: 2
+    m_Bits: 128
+--- !u!61 &807541020
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 807541016}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
     m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_ForceSendLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ForceReceiveLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_ContactCaptureLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_CallbackLayers:
+    serializedVersion: 2
+    m_Bits: 4294967295
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_CompositeOperation: 0
+  m_CompositeOrder: 0
+  m_Offset: {x: 0, y: 0.21133333}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.28866667}
+    oldSize: {x: 1, y: 1}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
 --- !u!1 &941977936
 GameObject:
   m_ObjectHideFlags: 0
@@ -271,6 +319,7 @@ GameObject:
   - component: {fileID: 1446823991}
   - component: {fileID: 1446823990}
   - component: {fileID: 1446823993}
+  - component: {fileID: 1446823994}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -396,6 +445,20 @@ MonoBehaviour:
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
   m_Version: 2
+--- !u!114 &1446823994
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1446823989}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 72afa9479d632a441ad1e2d6a5ec6f6f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::PlayerStats
+  gainMoney: 1
+  timer: 0.5
 --- !u!1 &1512956247
 GameObject:
   m_ObjectHideFlags: 0
@@ -413,7 +476,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!212 &1512956248
 SpriteRenderer:
   m_ObjectHideFlags: 0
