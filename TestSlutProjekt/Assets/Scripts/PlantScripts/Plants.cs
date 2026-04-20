@@ -34,11 +34,11 @@ public class Plants : MonoBehaviour
     }
 
     // Function to change health
-    public void ChangeHealth(float amount) // Vincent said something about the need to set a var. before death.
+    public void ChangeHealth(float amount)
     {
         health += amount;
 
-        if (health <= 0)
+        if (health <= 0) // If health goes below or equal to zero, it dies.
         {
             tile.isOccupied = false; // Makes the tile unoccupied for Vincents code
             Destroy(gameObject);
@@ -62,7 +62,7 @@ public class Plants : MonoBehaviour
         playerStats.ChangeMoney(-price);
     }
 
-    public void SetTile(PlantTile tile)
+    public void SetTile(PlantTile tile) // Allows tile setting from Vincents code
     {
         this.tile = tile;
     }
