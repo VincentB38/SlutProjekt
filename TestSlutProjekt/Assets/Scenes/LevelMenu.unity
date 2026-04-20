@@ -582,7 +582,6 @@ MonoBehaviour:
   - startPoint: {fileID: 1700409222}
   lineRenderer: {fileID: 1612283615}
   segments: 15
-  amplitude: 0.5
   duration: 2
   maxLevelIndex: 0
 --- !u!120 &1612283615

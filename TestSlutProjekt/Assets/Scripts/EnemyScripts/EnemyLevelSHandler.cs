@@ -52,6 +52,7 @@ public class EnemyLevelSHandler : MonoBehaviour
 
     private void Start()
     {
+        PlayerPrefs.SetInt("PlayerLevel", 0); // Reset level for testing, REMOVE WHEN EVERYTHING IS DONE
         foreach (Transform spawns in SpawnPointsArea.transform)
         {
             spawnPoints.Add(spawns);
@@ -70,6 +71,7 @@ public class EnemyLevelSHandler : MonoBehaviour
 
         if (levelIndex < 0 || levelIndex >= levels.Count)
         {
+            print(levelIndex);
             Debug.LogError("Invalid level index!");
             return;
         }
