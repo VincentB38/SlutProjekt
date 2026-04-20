@@ -8,12 +8,14 @@ public class Plants : MonoBehaviour
      */
 
     [Header("General")] // General Variables
-    [SerializeField] private string name;
+    [SerializeField] private string plantName;
     [SerializeField] private int price;
     [SerializeField] private float health;
 
     protected Transform playerTransform;
     PlayerStats playerStats; // PlayerStats instance
+
+    PlantTile tile;
 
     private void Start()
     {
@@ -38,6 +40,7 @@ public class Plants : MonoBehaviour
 
         if (health <= 0)
         {
+            tile.isOccupied = false; // Makes the tile unoccupied for Vincents code
             Destroy(gameObject);
         }
     }
@@ -59,11 +62,16 @@ public class Plants : MonoBehaviour
         playerStats.ChangeMoney(-price);
     }
 
+    public void SetTile(PlantTile tile)
+    {
+        this.tile = tile;
+    }
+
     // The Get functions
     #region GetFunctions
     public string GetName()
     {
-        return name;
+        return plantName;
     }
 
     public int GetPrice()
