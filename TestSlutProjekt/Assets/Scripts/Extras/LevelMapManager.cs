@@ -8,7 +8,7 @@ public class LevelMapManager : MonoBehaviour
     void Start()
     {
 
-        int levelIndex = PlayerPrefs.GetInt("PlayerLevel", 0);
+        int levelIndex = PlayerPrefs.GetInt("MaxLevel", 0);
 
         // unlock levels
         for (int i = 0; i < levelParts.Length; i++) // Loop through

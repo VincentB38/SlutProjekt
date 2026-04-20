@@ -2,6 +2,7 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using TMPro;
+using UnityEngine.SceneManagement;
 
 
 [System.Serializable]
@@ -76,10 +77,10 @@ public class EnemyLevelSHandler : MonoBehaviour
             return;
         }
 
-        currentLevel = levels[levelIndex];
+        currentLevel = levels[levelIndex]; // get the current level
         currentWaveIndex = 0;
 
-        StartCoroutine(RunWave(currentLevel.waves[currentWaveIndex]));
+        StartCoroutine(RunWave(currentLevel.waves[currentWaveIndex])); // start running the wave
     }
 
 
@@ -138,10 +139,10 @@ public class EnemyLevelSHandler : MonoBehaviour
             {
                 if (aliveEnemies < group.maxAliveEnemies) // if enemies are less than max then spawn
                 {
-                    SpawnEnemy(group);
+                    SpawnEnemy(group); // spawn the enemy
                     spawnedInGroup++;
                 }
-                yield return new WaitForSeconds(group.spawnInterval);
+                yield return new WaitForSeconds(group.spawnInterval); // wait for the assigned wait time
             }
         }
 
@@ -161,8 +162,15 @@ public class EnemyLevelSHandler : MonoBehaviour
             yield return StartCoroutine(ShowWaveText("Level Complete!"));
             Debug.Log("Level completed!");
 
-            // Win logic here
-            // Player.GetComponent<PlayerHandler>().EndGame(true);
+            int PlrLevel = PlayerPrefs.GetInt("PlayerLevel", 0); // get their current level
+            int MaxLevelUnlocked = PlayerPrefs.GetInt("MaxLevel", 0); // Get their max Levvel
+
+            if (PlrLevel == MaxLevelUnlocked) // incase you replay a stage, this just makes sure you can't unlock new stages by playing previous ones
+            {
+                PlayerPrefs.SetInt("MaxLevel", MaxLevelUnlocked + 1); // increase max level by 1
+            }
+            yield return new WaitForSeconds(1f);
+            SceneManager.LoadScene(0); // go back to level menu (CHANGE LATER IF WE WANT A PLAY SCREEN)
         }
     }
 
