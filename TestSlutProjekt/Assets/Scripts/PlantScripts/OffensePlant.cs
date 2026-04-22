@@ -20,12 +20,8 @@ public class OffensePlant : Plants
     void Start()
     {
         if (fireRate <= 0) fireRate = 1f; // Just in case, using while loops can cause crashable errors
-    }
 
-    // Update is called once per frame
-    void Update()
-    {
-        CheckDistance();
+        StartCoroutine(CheckDistance());
     }
 
     IEnumerator CheckDistance()
