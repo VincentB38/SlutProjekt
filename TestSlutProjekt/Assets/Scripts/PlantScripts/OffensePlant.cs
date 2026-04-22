@@ -19,29 +19,33 @@ public class OffensePlant : Plants
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (fireRate <= 0) fireRate = 1f; // Just in case, using while loops can cause crashable errors
+        if (fireRate <= 0) fireRate = 1f; // Sets fire rate to above 0 just in case
 
         StartCoroutine(CheckDistance());
     }
 
     IEnumerator CheckDistance()
     {
-        Vector2 origin = transform.position;
-        Vector2 direction = Vector2.right;
-
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
-
-        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
+        while (true)
         {
-            Attack();
-        }
+            Vector2 origin = transform.position; // Gets origin
+            Vector2 direction = Vector2.right; // Direction
 
-        yield return new WaitForSeconds(fireRate);
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
+
+            if (hit.collider != null && hit.collider.CompareTag("Enemy")) // Checks if it is null and an enemy
+            {
+                Attack();
+            }
+
+            yield return new WaitForSeconds(fireRate); // Wait for a set time
+        }
     }
 
-    public void Attack()
+    public void Attack() // Attack Function
     {
+        // Creates bullet, origin and parent
         GameObject tempBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletFolder.transform);
-        tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed;
+        tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed; // Sets speed of bullet
     }
 }
