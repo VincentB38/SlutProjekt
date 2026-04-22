@@ -28,16 +28,20 @@ public class OffensePlant : Plants
     {
         if (isInRange)
         {
-            // Start attacking // CHANGE THE TIMER FROM A COUROUTINE TO A MANUAL IF TIMER CUZ I NEED TO CHECK
+
         }
     }
 
-    IEnumerator FireRate()
+    private void CheckDistance()
     {
-        while (true)
+        Vector2 origin = transform.position;
+        Vector2 direction = Vector2.right;
+
+        RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
+
+        if (hit.collider != null && hit.collider.gameObject)
         {
-            Attack();
-            yield return new WaitForSeconds(fireRate);
+            
         }
     }
 
