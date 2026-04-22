@@ -17,7 +17,7 @@ public class Plants : MonoBehaviour
 
     PlantTile tile;
 
-    private void Start()
+    private void Awake()
     {
         try // Tries to get instance of playerstats
         {
