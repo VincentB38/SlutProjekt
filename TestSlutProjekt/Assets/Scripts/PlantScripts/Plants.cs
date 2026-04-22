@@ -17,20 +17,9 @@ public class Plants : MonoBehaviour
 
     PlantTile tile;
 
-    private void Awake()
+    private void Awake() // Does not work? Check when possible
     {
-        try // Tries to get instance of playerstats
-        {
-            playerStats = PlayerStats.Instance;
-        }
-        catch (System.NullReferenceException) // Catches if it doesnt get assigned
-        {
-            Debug.Log("Playerstats variable in Plants failed to get Instance");
-        }
-        catch (System.Exception e) // In case other unexpected exceptions occur
-        {
-            Debug.LogException(e);
-        }
+        playerStats = PlayerStats.Instance;
     }
 
     // Function to change health
