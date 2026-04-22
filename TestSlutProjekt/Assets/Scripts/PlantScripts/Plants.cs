@@ -13,14 +13,8 @@ public class Plants : MonoBehaviour
     [SerializeField] private float health;
 
     protected Transform playerTransform;
-    PlayerStats playerStats; // PlayerStats instance
 
     PlantTile tile;
-
-    private void Awake() // Does not work? Check when possible
-    {
-        playerStats = PlayerStats.Instance;
-    }
 
     // Function to change health
     public void ChangeHealth(float amount)
@@ -36,9 +30,9 @@ public class Plants : MonoBehaviour
 
     public bool CheckPrice()
     {
-        if (playerStats != null)
+        if (PlayerStats.Instance != null)
         {
-            if (playerStats.GetSun() >= price) // Checks if player has enough money
+            if (PlayerStats.Instance.GetSun() >= price) // Checks if player has enough money
             {
                 return true; // Sends a true value to the placement script to allow placement
             }
@@ -55,7 +49,7 @@ public class Plants : MonoBehaviour
 
     public void Buy() // Efficient way to reduce price without needing other variables
     {
-        playerStats.ChangeMoney(-price);
+        PlayerStats.Instance.ChangeMoney(-price);
     }
 
     public void SetTile(PlantTile tile) // Allows tile setting from Vincents code
