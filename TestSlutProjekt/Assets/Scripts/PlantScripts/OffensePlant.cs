@@ -12,7 +12,6 @@ public class OffensePlant : Plants
     public float damage;
     public float bulletSpeed;
     public float attackRange;
-    public bool isInRange;
     public float fireRate;
     public GameObject bulletPrefab;
     public GameObject bulletFolder;
@@ -26,23 +25,22 @@ public class OffensePlant : Plants
     // Update is called once per frame
     void Update()
     {
-        if (isInRange)
-        {
-
-        }
+        CheckDistance();
     }
 
-    private void CheckDistance()
+    IEnumerator CheckDistance()
     {
         Vector2 origin = transform.position;
         Vector2 direction = Vector2.right;
 
         RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
 
-        if (hit.collider != null && hit.collider.gameObject)
+        if (hit.collider != null && hit.collider.CompareTag("Enemy"))
         {
-            
+            Attack();
         }
+
+        yield return new WaitForSeconds(fireRate);
     }
 
     public void Attack()
