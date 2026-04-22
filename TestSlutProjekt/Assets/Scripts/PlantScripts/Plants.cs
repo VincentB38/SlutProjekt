@@ -47,14 +47,21 @@ public class Plants : MonoBehaviour
 
     public bool CheckPrice()
     {
-        if (playerStats.GetSun() >= price) // Checks if player has enough money
+        if (playerStats != null)
         {
-            return true; // Sends a true value to the placement script to allow placement
+            if (playerStats.GetSun() >= price) // Checks if player has enough money
+            {
+                return true; // Sends a true value to the placement script to allow placement
+            }
+            else
+            {
+                return false; // Sends a false value to the placement script to deny placement
+            }
         }
-        else
-        {
-            return false; // Sends a false value to the placement script to deny placement
-        }
+
+        Debug.Log("Playerstats is null");
+
+        return false;
     }
 
     public void Buy() // Efficient way to reduce price without needing other variables

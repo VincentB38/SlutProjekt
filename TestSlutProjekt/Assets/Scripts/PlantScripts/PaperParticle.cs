@@ -9,6 +9,8 @@ public class PaperParticle : MonoBehaviour
     [SerializeField] private Vector2 heightInterval;
     [SerializeField] private Vector2 widthInterval;
 
+    [SerializeField] private float aliveTimer = 10f;
+
     [SerializeField] private int moneyGain;
     [SerializeField] private LayerMask paperParticleLayer;
 
@@ -19,7 +21,16 @@ public class PaperParticle : MonoBehaviour
     {
         x = transform.localPosition.x;
 
-        StartCoroutine(JumpAnim());
+        StartCoroutine(JumpAnim()); // Start jump animation
+
+        StartCoroutine(DeathTimer()); // Sets death timer
+    }
+
+    IEnumerator DeathTimer() // Wait for set time and then destroy
+    {
+        yield return new WaitForSeconds(aliveTimer);
+
+        Destroy(gameObject);
     }
 
     // Update is called once per frame

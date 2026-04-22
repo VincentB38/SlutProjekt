@@ -26,7 +26,7 @@ public class PaperFlower : PassivePlant
             Debug.LogException(e);
         }
        
-        StartCoroutine(Generate());
+        StartCoroutine(Generate()); // Start overridden method
     }
 
     protected override IEnumerator Generate()

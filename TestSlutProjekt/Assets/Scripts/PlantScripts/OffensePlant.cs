@@ -4,11 +4,6 @@ using UnityEngine;
 
 public class OffensePlant : Plants
 {
-    [Header("General")]
-    public string plantName;
-    public int plantPrice;
-    public float plantHealth;
-
     public Transform muzzle;
 
     // Variables for visuals

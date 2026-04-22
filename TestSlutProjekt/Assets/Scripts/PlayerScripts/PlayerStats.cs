@@ -8,6 +8,7 @@ public class PlayerStats : MonoBehaviour
 
     private int sun;
     [SerializeField] private int gainMoney;
+    [SerializeField] private int health;
 
     private int level;
     private int maxLevel;
@@ -36,6 +37,13 @@ public class PlayerStats : MonoBehaviour
             sun += gainMoney;
             yield return new WaitForSeconds(timer);
         }
+    }
+
+    public void ChangeHealth(int amount)
+    {
+        health += amount;
+
+        // Add so something happens when health is under 0
     }
 
     public void SetLevel(int level)
