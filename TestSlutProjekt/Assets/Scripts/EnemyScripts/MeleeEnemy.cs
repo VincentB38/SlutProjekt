@@ -13,6 +13,7 @@ public class MeleeEnemy : EnemyHandler
 
     protected override void Update()
     {
+        base.Update();
         bool isAttacking = false;
 
         foreach (Transform plantTransform in PlantHolder.transform)
@@ -21,7 +22,7 @@ public class MeleeEnemy : EnemyHandler
 
             float distance = Mathf.Abs(plant.transform.position.x - transform.position.x);
 
-            if (distance <= AttackDistance)
+            if (distance <= AttackDistance && distance > 0)
             {
                 Debug.Log("Attacking");
                 isAttacking = true;
