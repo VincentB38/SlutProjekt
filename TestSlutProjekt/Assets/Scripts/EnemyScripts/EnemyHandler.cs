@@ -19,12 +19,20 @@ public class EnemyHandler : MonoBehaviour
     {
         // Baslogik kan ligga här, t.ex. allmän rörelse eller animation
         EnemyBody.linearVelocity = new Vector2(-Speed, 0);
+
+        print(EnemyBody.position.x);
+        if (EnemyBody.position.x <= -10) // if they manage to get past
+        {
+            Die();
+            // add lose heart logic or wtv here
+        } 
     }
 
     public int GetEnemyLane() // Use to find which lane the enemy is on
     {
         return Line;
     }
+
     public virtual void TakeDamage(float amount) // Deal Damage
     {
         Health -= amount;
