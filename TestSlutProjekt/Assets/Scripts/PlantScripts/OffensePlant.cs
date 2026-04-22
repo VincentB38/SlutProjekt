@@ -12,7 +12,6 @@ public class OffensePlant : Plants
     public float damage;
     public float bulletSpeed;
     public float attackRange;
-    public bool isInRange;
     public float fireRate;
     public GameObject bulletPrefab;
     public GameObject bulletFolder;
@@ -20,34 +19,33 @@ public class OffensePlant : Plants
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        if (fireRate <= 0) fireRate = 1f; // Just in case, using while loops can cause crashable errors
+        if (fireRate <= 0) fireRate = 1f; // Sets fire rate to above 0 just in case
+
+        StartCoroutine(CheckDistance());
     }
 
-    // Update is called once per frame
-    void Update()
+    IEnumerator CheckDistance()
     {
-        if (isInRange)
+        while (true)
         {
+            Vector2 origin = transform.position; // Gets origin
+            Vector2 direction = Vector2.right; // Direction
 
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
+
+            if (hit.collider != null && hit.collider.CompareTag("Enemy")) // Checks if it is null and an enemy
+            {
+                Attack();
+            }
+
+            yield return new WaitForSeconds(fireRate); // Wait for a set time
         }
     }
 
-    private void CheckDistance()
+    public void Attack() // Attack Function
     {
-        Vector2 origin = transform.position;
-        Vector2 direction = Vector2.right;
-
-        RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
-
-        if (hit.collider != null && hit.collider.gameObject)
-        {
-            
-        }
-    }
-
-    public void Attack()
-    {
+        // Creates bullet, origin and parent
         GameObject tempBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletFolder.transform);
-        tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed;
+        tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed; // Sets speed of bullet
     }
 }
