@@ -17,8 +17,6 @@ public class EnemyHandler : MonoBehaviour
 
     protected virtual void Update()
     {
-        // Baslogik kan ligga här, t.ex. allmän rörelse eller animation
-        EnemyBody.linearVelocity = new Vector2(-Speed, 0);
 
         print(EnemyBody.position.x);
         if (EnemyBody.position.x <= -10) // if they manage to get past
