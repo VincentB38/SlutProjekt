@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerStats : MonoBehaviour
 {
-    static public PlayerStats Instance;
+    public static PlayerStats Instance;
 
     private int sun;
     [SerializeField] private int gainMoney;
