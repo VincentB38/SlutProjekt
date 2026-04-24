@@ -10,7 +10,7 @@ public class EnemyHandler : MonoBehaviour
     public float Damage = 2f;
     public float AttackDistance = 25f;
     public float ActionCooldown = 1f;
-    public int Line; // get what lane the enemy is in 
+    private int Line; // get what lane the enemy is in 
     protected virtual void Awake()
     {
         EnemyBody = GetComponent<Rigidbody2D>();
@@ -33,6 +33,11 @@ public class EnemyHandler : MonoBehaviour
     public int GetEnemyLane() // Use to find which lane the enemy is on
     {
         return Line;
+    }
+
+    public void SetEnemyLane(int Number)
+    {
+        Line = Number;
     }
 
     public virtual void TakeDamage(float amount) // Deal Damage

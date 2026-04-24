@@ -34,6 +34,7 @@ public class MeleeEnemy : EnemyHandler
 
             if (hit.collider != null && hit.collider.CompareTag("Plant")) // Checks if it is null and an enemy
             {
+                Plants plant = hit.collider.GetComponent<Plants>();
                 //Action();
                 isAttacking = true;
                 yield return new WaitForSeconds(ActionCooldown); // wait action coolldown as its doing the action
