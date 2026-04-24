@@ -8,7 +8,7 @@ public class EnemyHandler : MonoBehaviour
     public float Health = 10f; // Stats for the enemies
     public float Speed = 2f;
     public float Damage = 2f;
-    public float AttackDistance = 10f;
+    public float AttackDistance = 25f;
     public float ActionCooldown = 1f;
     public int Line; // get what lane the enemy is in 
     protected virtual void Awake()
