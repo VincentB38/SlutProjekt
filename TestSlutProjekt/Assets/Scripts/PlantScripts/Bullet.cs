@@ -12,16 +12,24 @@ public class Bullet : MonoBehaviour
         StartCoroutine(DeathTimer());
     }
 
-    IEnumerator DeathTimer()
+    IEnumerator DeathTimer() // Initilize countdown until destruction
     {
         yield return new WaitForSeconds(timeUntilDeath);
+        Die();
+    }
+
+    void Die() // Destroy
+    {
+        Destroy(gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.CompareTag("Enemy"))
+        if (collision.CompareTag("Enemy")) // Checks if collision is with Enemy
         {
-            collision.GetComponent<MeleeEnemy>().TakeDamage(damage);
+            collision.GetComponent<EnemyHandler>().TakeDamage(damage); // Take damage function from Enemy SuperClass
+
+            Die(); // Destroy itself after it hits
         }
     }
 }
