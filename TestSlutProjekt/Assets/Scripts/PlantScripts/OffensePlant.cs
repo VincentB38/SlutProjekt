@@ -32,6 +32,7 @@ public class OffensePlant : Plants
             Vector2 direction = Vector2.right; // Direction
 
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
+            Debug.DrawRay(origin, direction, Color.green);
 
             if (hit.collider != null && hit.collider.CompareTag("Enemy")) // Checks if it is null and an enemy
             {
