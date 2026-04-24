@@ -20,7 +20,6 @@ public class EnemyHandler : MonoBehaviour
     protected virtual void Update()
     {
 
-        print(EnemyBody.position.x);
         if (EnemyBody.position.x <= -10) // if they manage to get past
         {
             Die();

@@ -28,20 +28,30 @@ public class MeleeEnemy : EnemyHandler
         while (true)
         {
             Vector2 origin = transform.position; // Gets origin
-            Vector2 direction = Vector2.right; // Direction
+            Vector2 direction = Vector2.left; // Direction
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, AttackDistance);
+            LayerMask mask = LayerMask.GetMask("PlantLayer");
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, AttackDistance, mask);
 
             if (hit.collider != null && hit.collider.CompareTag("Plant")) // Checks if it is null and an enemy
             {
                 Plants plant = hit.collider.GetComponent<Plants>();
-                //Action();
-                isAttacking = true;
-                yield return new WaitForSeconds(ActionCooldown); // wait action coolldown as its doing the action
+
+                print(plant.GetLane());
+                print(this.GetEnemyLane());
+
+                if (plant.GetLane() == this.GetEnemyLane())
+                {
+                    print("Hit");
+                    plant.ChangeHealth(-Damage);
+                    isAttacking = true;
+                    yield return new WaitForSeconds(ActionCooldown); // wait action coolldown as its doing the action
+                }
             }
             else
             {
                 isAttacking = false;
+                print(hit.collider);
             }
 
             yield return new WaitForSeconds(0.1f); // Wait shorter amount of times as it's checking distance
