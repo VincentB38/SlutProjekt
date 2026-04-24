@@ -186,7 +186,7 @@ public class EnemyLevelSHandler : MonoBehaviour
 
         aliveEnemies++;
 
-        enemy.GetComponent<EnemyHandler>().Line = int.Parse(spawnPoint.name); // Set the enemies lane based of the spawnpoint name
+        enemy.GetComponent<EnemyHandler>().SetEnemyLane(int.Parse(spawnPoint.name)); // Set the enemies lane based of the spawnpoint name
 
     }
 
