@@ -1,4 +1,5 @@
 using UnityEngine;
+using static UnityEngine.RuleTile.TilingRuleOutput;
 
 public class EnemyHandler : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class EnemyHandler : MonoBehaviour
     public float Speed = 2f;
     public float Damage = 2f;
     public float AttackDistance = 10f;
+    public float ActionCooldown = 1f;
     public int Line; // get what lane the enemy is in 
     protected virtual void Awake()
     {
@@ -24,6 +26,8 @@ public class EnemyHandler : MonoBehaviour
             Die();
             // add lose heart logic or wtv here
         } 
+
+
     }
 
     public int GetEnemyLane() // Use to find which lane the enemy is on
