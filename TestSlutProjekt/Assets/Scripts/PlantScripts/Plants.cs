@@ -15,6 +15,7 @@ public class Plants : MonoBehaviour
     protected Transform playerTransform;
 
     PlantTile tile;
+    private float lane;
 
     // Function to change health
     public void ChangeHealth(float amount)
@@ -55,6 +56,7 @@ public class Plants : MonoBehaviour
     public void SetTile(PlantTile tile) // Allows tile setting from Vincents code
     {
         this.tile = tile;
+        this.lane = int.Parse(tile.name);
     }
 
     // The Get functions
@@ -72,6 +74,11 @@ public class Plants : MonoBehaviour
     public float GetHealth()
     {
         return health;
+    }
+
+    public float GetLane()
+    {
+        return lane;
     }
     #endregion
 }
