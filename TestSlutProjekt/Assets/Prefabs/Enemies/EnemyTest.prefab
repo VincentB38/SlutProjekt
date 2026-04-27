@@ -135,7 +135,7 @@ MonoBehaviour:
   Health: 10
   Speed: 1
   Damage: 0.5
-  AttackDistance: 2.25
+  AttackDistance: 3
   ActionCooldown: 0.5
 --- !u!61 &8287222978244805585
 BoxCollider2D:
