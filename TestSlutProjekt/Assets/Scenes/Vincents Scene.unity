@@ -1044,6 +1044,10 @@ MonoBehaviour:
         quantity: 5
         spawnInterval: 1
         maxAliveEnemies: 1
+      - enemyPrefab: {fileID: 466846988681525936, guid: 64c7e892ac20a434abc09bc53fdcc541, type: 3}
+        quantity: 3
+        spawnInterval: 1
+        maxAliveEnemies: 3
   - levelName: The lawn
     waves:
     - waveName: Wave 1
