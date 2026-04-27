@@ -30,17 +30,16 @@ public class MeleeEnemy : EnemyHandler
             Vector2 origin = transform.position; // Gets origin
             Vector2 direction = Vector2.left; // Direction
 
-            LayerMask mask = LayerMask.GetMask("PlantLayer");
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, AttackDistance, mask);
+            LayerMask mask = LayerMask.GetMask("PlantLayer"); // so it ignores everything that isn't in the plant layer
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, AttackDistance, mask); 
 
             if (hit.collider != null && hit.collider.CompareTag("Plant")) // Checks if it is null and an enemy
             {
                 Plants plant = hit.collider.GetComponent<Plants>();
 
                 print(plant.GetLane());
-                print(this.GetEnemyLane());
 
-                if (plant.GetLane() == this.GetEnemyLane())
+                if (plant.GetLane() == this.GetEnemyLane()) // just extra to make sure the plant is on the same lane as the enemy
                 {
                     print("Hit");
                     plant.ChangeHealth(-Damage);

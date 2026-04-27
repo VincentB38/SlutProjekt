@@ -9,10 +9,12 @@ public class PaperFlower : PassivePlant
     [Header("SunflowerSettings")]
 
     public GameObject paperPrefab;
-    public GameObject paperFolder; 
+    GameObject paperFolder; 
 
     private void Start()
     {
+
+        paperFolder = GameObject.Find("PaperFolder");
         try // Tries to find a folder to place its paper instaniated prefabs
         {
             if (paperFolder == null)

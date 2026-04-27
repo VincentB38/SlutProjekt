@@ -15,7 +15,7 @@ public class Plants : MonoBehaviour
     protected Transform playerTransform;
 
     PlantTile tile;
-    private float lane;
+    private int lane;
 
     // Function to change health
     public void ChangeHealth(float amount)
@@ -76,7 +76,7 @@ public class Plants : MonoBehaviour
         return health;
     }
 
-    public float GetLane()
+    public int GetLane()
     {
         return lane;
     }

@@ -102,10 +102,10 @@ public class PlantPlacementController : MonoBehaviour
                 plantPrefab.Buy(); // buy the plant
 
                 tile.isOccupied = true; // tile is being used
-                plantPrefab.SetTile(tile); // Assigns the tile variable to federicos code
+                GameObject obj = Instantiate(plantPrefab.gameObject,tile.plantAnchor.position + new Vector3(0, 0, -1),Quaternion.identity,PlantHolder.transform); // spawn in the plant
 
-                Instantiate(plantPrefab, tile.plantAnchor.position + new Vector3(0, 0, -1), Quaternion.identity, PlantHolder.transform); // spawn in the plant
-
+                Plants plantInstance = obj.GetComponent<Plants>(); // Get the plant
+                plantInstance.SetTile(tile); // Set the plant lane to the tile
                 Debug.Log($"Placed plant: {plantPrefab.name}");
             }
 

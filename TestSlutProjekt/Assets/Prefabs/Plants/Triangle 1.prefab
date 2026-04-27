@@ -153,6 +153,5 @@ MonoBehaviour:
   plantName: SunFlower
   price: 100
   health: 10
-  timeRangeInterval: {x: 1, y: 2}
-  paperPrefab: {fileID: 0}
-  paperFolder: {fileID: 0}
+  timeRangeInterval: {x: 4, y: 5}
+  paperPrefab: {fileID: 6519158900614044501, guid: 5a2c981e9340de54bafab5975bac8f1e, type: 3}

@@ -14,11 +14,12 @@ public class OffensePlant : Plants
     public float attackRange;
     public float fireRate;
     public GameObject bulletPrefab;
-    public GameObject bulletFolder;
+    GameObject bulletFolder;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        bulletFolder = GameObject.Find("BulletFolder");
         if (fireRate <= 0) fireRate = 1f; // Sets fire rate to above 0 just in case
 
         StartCoroutine(CheckDistance());
@@ -31,7 +32,8 @@ public class OffensePlant : Plants
             Vector2 origin = transform.position; // Gets origin
             Vector2 direction = Vector2.right; // Direction
 
-            RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange);
+            LayerMask mask = LayerMask.GetMask("EnemyLayer");
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, mask);
             Debug.DrawRay(origin, direction, Color.green);
 
             if (hit.collider != null && hit.collider.CompareTag("Enemy")) // Checks if it is null and an enemy

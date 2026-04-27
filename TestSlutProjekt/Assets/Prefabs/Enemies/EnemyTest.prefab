@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 792014125252037235}
   - component: {fileID: -8597625271805207857}
   - component: {fileID: 8287222978244805585}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: EnemyTest
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -133,10 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   Health: 10
-  Speed: 2
-  Damage: 2
-  AttackDistance: 3
-  ActionCooldown: 1
+  Speed: 1
+  Damage: 0.5
+  AttackDistance: 1.5
+  ActionCooldown: 0.5
 --- !u!61 &8287222978244805585
 BoxCollider2D:
   m_ObjectHideFlags: 0
