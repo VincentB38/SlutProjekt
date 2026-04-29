@@ -41,7 +41,6 @@ public class MeleeEnemy : EnemyHandler
 
                 if (plant.GetLane() == this.GetEnemyLane()) // just extra to make sure the plant is on the same lane as the enemy
                 {
-                    print("Hit");
                     plant.ChangeHealth(-Damage);
                     isAttacking = true;
                     yield return new WaitForSeconds(ActionCooldown); // wait action coolldown as its doing the action
@@ -50,7 +49,6 @@ public class MeleeEnemy : EnemyHandler
             else
             {
                 isAttacking = false;
-                print(hit.collider);
             }
 
             yield return new WaitForSeconds(0.1f); // Wait shorter amount of times as it's checking distance
