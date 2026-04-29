@@ -50,5 +50,6 @@ public class OffensePlant : Plants
         // Creates bullet, origin and parent
         GameObject tempBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletFolder.transform);
         tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed; // Sets speed of bullet
+        tempBullet.GetComponent<Bullet>().SetDamage(damage);
     }
 }

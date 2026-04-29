@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
-    public float damage;
+    private float damage = 0;
     public float timeUntilDeath;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -31,5 +31,10 @@ public class Bullet : MonoBehaviour
 
             Die(); // Destroy itself after it hits
         }
+    }
+
+    public void SetDamage(float damage)
+    {
+        this.damage = damage;
     }
 }
