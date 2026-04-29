@@ -39,7 +39,7 @@ public class EnemyHandler : MonoBehaviour
         Line = Number;
     }
 
-    public virtual void TakeDamage(float amount) // Deal Damage
+    public virtual void ChangeHealth(float amount) // Change Health
     {
         Health -= amount;
         if (Health <= 0)

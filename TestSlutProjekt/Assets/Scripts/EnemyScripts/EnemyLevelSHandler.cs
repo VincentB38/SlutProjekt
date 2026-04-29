@@ -9,14 +9,21 @@ using UnityEngine.SceneManagement;
 public class EnemyLevel
 {
     public string levelName;
+    public float startDelay = 2f; // time before the wave starts
     public List<EnemyWave> waves = new List<EnemyWave>();
+}
+
+[System.Serializable]
+public class EnemyTypeEntry
+{
+    public GameObject enemyPrefab; // the enemy prefab
+    public int totalAmount; // total amount of that enemy
 }
 
 [System.Serializable]
 public class EnemyGroup // Creates the information for each group
 {
-    public GameObject enemyPrefab;
-    public int quantity = 1;
+    public List<EnemyTypeEntry> enemyTypes = new List<EnemyTypeEntry>();
     public float spawnInterval = 0.5f;
     public int maxAliveEnemies = 3;
 }
@@ -56,13 +63,14 @@ public class EnemyLevelSHandler : MonoBehaviour
         PlayerPrefs.SetInt("PlayerLevel", 0); // Reset level for testing, REMOVE WHEN EVERYTHING IS DONE
         foreach (Transform spawns in SpawnPointsArea.transform)
         {
-            spawnPoints.Add(spawns);
+            spawnPoints.Add(spawns); // add in the spawn points
         }
+        
 
         waveText.rectTransform.pivot = new Vector2(0.5f, 0.5f);
         waveText.rectTransform.localScale = Vector3.zero;
 
-        levelIndex = PlayerPrefs.GetInt("PlayerLevel");
+        levelIndex = PlayerPrefs.GetInt("PlayerLevel"); // get the level chosen
 
         if (levels.Count == 0)
         {
@@ -80,10 +88,15 @@ public class EnemyLevelSHandler : MonoBehaviour
         currentLevel = levels[levelIndex]; // get the current level
         currentWaveIndex = 0;
 
-        StartCoroutine(RunWave(currentLevel.waves[currentWaveIndex])); // start running the wave
+        StartCoroutine(RunLevel()); // start the level
     }
 
+    private IEnumerator RunLevel()
+    {
+        yield return new WaitForSeconds(currentLevel.startDelay); // timer before enemies spawn so player has time to prepare
 
+        StartCoroutine(RunWave(currentLevel.waves[currentWaveIndex]));// start running the wave
+    }
     private IEnumerator ShowWaveText(string text)
     {
         if (waveText == null)
@@ -119,13 +132,13 @@ public class EnemyLevelSHandler : MonoBehaviour
             yield return null;
         }
 
-        waveText.gameObject.SetActive(false);
+        waveText.gameObject.SetActive(false); // hide the text
     }
 
 
     private IEnumerator RunWave(EnemyWave wave)
     {
-        yield return StartCoroutine(ShowWaveText($"{wave.waveName}"));
+        yield return StartCoroutine(ShowWaveText($"{wave.waveName}")); // show the wave name
 
         // 1s delay before enemies spawn
         yield return new WaitForSeconds(1f);
@@ -134,13 +147,29 @@ public class EnemyLevelSHandler : MonoBehaviour
 
         foreach (var group in wave.groups) // Loop through the groups in the waves
         {
-            int spawnedInGroup = 0;
-            while (spawnedInGroup < group.quantity)
+            Dictionary<GameObject, int> remaining = new Dictionary<GameObject, int>();
+            int totalToSpawn = 0;
+
+            foreach (var type in group.enemyTypes) // go through the enemy types inside of the group
+            {
+                remaining[type.enemyPrefab] = type.totalAmount; // keep track of the amount of that unit has been spawned
+                totalToSpawn += type.totalAmount;
+            }
+
+            int spawned = 0;
+
+            while (spawned < totalToSpawn)
             {
                 if (aliveEnemies < group.maxAliveEnemies) // if enemies are less than max then spawn
                 {
-                    SpawnEnemy(group); // spawn the enemy
-                    spawnedInGroup++;
+                    GameObject chosen = GetRandomEnemy(remaining);
+
+                    if (chosen != null)
+                    {
+                        SpawnEnemy(chosen); // spawn the enemy
+                        remaining[chosen]--;
+                        spawned++;
+                    }
                 }
                 yield return new WaitForSeconds(group.spawnInterval); // wait for the assigned wait time
             }
@@ -174,7 +203,24 @@ public class EnemyLevelSHandler : MonoBehaviour
         }
     }
 
-    private void SpawnEnemy(EnemyGroup group) // Spawn enemies
+    GameObject GetRandomEnemy(Dictionary<GameObject, int> remaining) // using dictionary to store the enemies, for example RegularZombie = 3, FastZombie = 2;
+        // instead of using a list that just returns index 0 is RegularZombie
+    {
+        List<GameObject> available = new List<GameObject>(); // create a list to store enemy types that still have enemies left to spawn
+
+        foreach (var kv in remaining) // go through each enemy  (k stands for Key and v for Value)
+        {
+            if (kv.Value > 0) // only include the enemy type if there's some left
+                available.Add(kv.Key); // add it in
+        }
+
+        if (available.Count == 0) // if everything has spawned in for that enemy
+            return null;
+
+        return available[Random.Range(0, available.Count)]; // pick a random enemy from the available one
+    }
+
+    private void SpawnEnemy(GameObject prefab) // Spawn enemies
     {
         if (spawnPoints.Count == 0) // if there is no spawnpoitns assigned
         {
@@ -182,7 +228,7 @@ public class EnemyLevelSHandler : MonoBehaviour
         }
 
         Transform spawnPoint = spawnPoints[Random.Range(0, spawnPoints.Count)]; // Randomly spawn between the assigned spawnpoints
-        GameObject enemy = Instantiate(group.enemyPrefab, spawnPoint.position, spawnPoint.rotation);
+        GameObject enemy = Instantiate(prefab, spawnPoint.position, spawnPoint.rotation);
 
         aliveEnemies++;
 

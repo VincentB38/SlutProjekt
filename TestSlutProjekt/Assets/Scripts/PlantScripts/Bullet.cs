@@ -27,7 +27,7 @@ public class Bullet : MonoBehaviour
     {
         if (collision.CompareTag("Enemy")) // Checks if collision is with Enemy
         {
-            collision.GetComponent<EnemyHandler>().TakeDamage(damage); // Take damage function from Enemy SuperClass
+            collision.GetComponent<EnemyHandler>().ChangeHealth(damage); // Take damage function from Enemy SuperClass
 
             Die(); // Destroy itself after it hits
         }

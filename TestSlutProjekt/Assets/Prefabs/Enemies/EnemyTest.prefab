@@ -132,10 +132,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5018e4802aaab18469d7402ff1a90fe0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
-  Health: 10
-  Speed: 1
+  Health: 7
+  Speed: 0.6
   Damage: 0.5
-  AttackDistance: 3
+  AttackDistance: 1.25
   ActionCooldown: 0.5
 --- !u!61 &8287222978244805585
 BoxCollider2D:
