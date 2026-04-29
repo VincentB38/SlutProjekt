@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 792014125252037235}
   - component: {fileID: 8287222978244805585}
   - component: {fileID: -4295198163454783774}
+  - component: {fileID: 1420548838989631411}
   m_Layer: 8
   m_Name: HealerEnemy
   m_TagString: Enemy
@@ -202,3 +203,23 @@ CircleCollider2D:
   m_CompositeOrder: 0
   m_Offset: {x: 0, y: 0}
   m_Radius: 3
+--- !u!114 &1420548838989631411
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 466846988681525936}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d24a18e6481d5cb47b0bf99aa6efe76e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::BufferEnemy
+  Health: 10
+  Speed: 0.5
+  Damage: 0.1
+  AttackDistance: 1
+  ActionCooldown: 1
+  Radius: 4
+  BuffCooldown: 3
+  HealAmount: 1

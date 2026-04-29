@@ -7,9 +7,8 @@ public class BufferEnemy : EnemyHandler
     GameObject PlantHolder;
     public float Radius;
     public float BuffCooldown;
+    public float HealAmount;
     bool isAttacking = false;
-
-    private List<GameObject> EnemiesInRange = new List<GameObject>();
     protected override void Awake()
     {
         this.GetComponent<CircleCollider2D>().radius = Radius;
@@ -22,9 +21,11 @@ public class BufferEnemy : EnemyHandler
     }
 
     // Update is called once per frame
-    void Update()
+    protected override void Update()
     {
-        
+        base.Update();
+
+        EnemyBody.linearVelocity = isAttacking ? Vector2.zero : new Vector2(-Speed, 0); // if isattacking is false then no movement else the base movement
     }
 
     IEnumerator CheckPlantDistance()
@@ -63,24 +64,21 @@ public class BufferEnemy : EnemyHandler
     {
         while (true)
         {
-            foreach (GameObject Enemy in EnemiesInRange)
-            {
-                //Enemy.GetComponent<EnemyHandler>().
-            }
-            yield return new WaitForSeconds(0.1f); // Wait shorter amount of times as it's checking distance
-        }
-    }
+            Vector2 position = transform.position;
+            LayerMask mask = LayerMask.GetMask("EnemyLayer"); // the enemy later
 
-    private void OnCollisionEnter2D(Collision2D collision)
-    {
-        GameObject Object = collision.gameObject;
+            Collider2D[] hits = Physics2D.OverlapCircleAll(position, Radius, mask); // checks in a cirular to see if an enemy is near it
 
-        if (Object.layer == LayerMask.GetMask("EnemyLayer"))
-        {
-            if (!EnemiesInRange.Contains(Object))
+            foreach (Collider2D hit in hits) // goes through the hits
             {
-                EnemiesInRange.Add(Object);
+                EnemyHandler enemy = hit.GetComponent<EnemyHandler>(); // gets the enemy script
+                if (enemy != null && enemy.gameObject != gameObject) // makes sure enemy isn't null and the enemy isn't itself (prevent self healing)
+                {
+                    enemy.ChangeHealth(-HealAmount); // negative as negative and negative is positive
+                }
             }
+
+            yield return new WaitForSeconds(BuffCooldown); // wait the cooldown
         }
     }
 }

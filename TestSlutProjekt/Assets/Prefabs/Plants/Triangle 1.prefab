@@ -151,7 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PassivePlant
   plantName: SunFlower
-  price: 100
+  price: 50
   health: 3
   timeRangeInterval: {x: 8, y: 10}
   paperPrefab: {fileID: 6519158900614044501, guid: 5a2c981e9340de54bafab5975bac8f1e, type: 3}

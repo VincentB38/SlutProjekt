@@ -37,8 +37,6 @@ public class MeleeEnemy : EnemyHandler
             {
                 Plants plant = hit.collider.GetComponent<Plants>();
 
-                print(plant.GetLane());
-
                 if (plant.GetLane() == this.GetEnemyLane()) // just extra to make sure the plant is on the same lane as the enemy
                 {
                     plant.ChangeHealth(-Damage);
