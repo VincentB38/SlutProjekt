@@ -3,9 +3,6 @@ using UnityEngine;
 
 public class Plants : MonoBehaviour
 {
-    /*
-     * Add sprite and animation logic inside here
-     */
 
     [Header("General")] // General Variables
     [SerializeField] private string plantName;
@@ -83,6 +80,9 @@ public class Plants : MonoBehaviour
     #endregion
 
     #region Animation
+
+
+
 
     #endregion
 }
