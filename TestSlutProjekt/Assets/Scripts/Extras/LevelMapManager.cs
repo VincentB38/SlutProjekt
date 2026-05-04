@@ -9,7 +9,7 @@ public class LevelMapManager : MonoBehaviour
     {
 
         int levelIndex = PlayerPrefs.GetInt("MaxLevel", 0); // get the max level and if it does not exist then 0
-        levelIndex = 0;
+        // levelIndex = 0; // reset level
         // unlock levels
         for (int i = 0; i < levelParts.Length; i++) // Loop through
         {
@@ -17,7 +17,7 @@ public class LevelMapManager : MonoBehaviour
                 levelParts[i].Unlock(); // disable the lock
         }
 
-        if (pathGenerator != null)
+        if (pathGenerator != null) // safety 
         {
             pathGenerator.maxLevelIndex = levelIndex; // Let the path generator know the length it should do
             pathGenerator.Play(); // Start it

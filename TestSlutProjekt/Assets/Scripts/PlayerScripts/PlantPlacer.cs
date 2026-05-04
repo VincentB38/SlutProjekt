@@ -78,14 +78,14 @@ public class PlantPlacementController : MonoBehaviour
         {
             if (tileCol == null) // if no tile is under the mouse
             {
-                Debug.Log("No tile detected under mouse!");
+                //Debug.Log("No tile detected under mouse!"); // not really needed right now
                 return;
             }
 
             PlantTile tile = tileCol.GetComponent<PlantTile>(); // get the plant tile
             if (tile == null || tile.isOccupied) // if no tile or the tile is already being used
             {
-                Debug.Log("Tile invalid or occupied!");
+                //Debug.Log("Tile invalid or occupied!"); // not really needed right now
                 return;
             }
 

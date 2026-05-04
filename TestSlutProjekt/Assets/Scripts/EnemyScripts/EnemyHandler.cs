@@ -1,3 +1,6 @@
+using System.Collections;
+using Unity.VisualScripting;
+using UnityEditor.XR;
 using UnityEngine;
 using static UnityEngine.RuleTile.TilingRuleOutput;
 
@@ -6,15 +9,16 @@ public class EnemyHandler : MonoBehaviour
     public Rigidbody2D EnemyBody { get; private set; }
     private GameObject GameHandler;
     public float Health = 10f; // Stats for the enemies
-    public float Speed = 2f;
-    public float Damage = 2f;
     public float AttackDistance = 25f;
-    public float ActionCooldown = 1f;
+    public float Speed = 2f;
+    private bool IsNear = false; // just a bool
+    public Plants plant; // to store the nearby plant
     private int Line; // get what lane the enemy is in 
     protected virtual void Awake()
     {
         EnemyBody = GetComponent<Rigidbody2D>();
         GameHandler = GameObject.Find("GameHandler");
+        StartCoroutine(PlantChecker());
     }
 
     protected virtual void Update()
@@ -29,6 +33,38 @@ public class EnemyHandler : MonoBehaviour
 
     }
 
+    IEnumerator PlantChecker()
+    {
+        while (true)
+        {
+            Vector2 origin = transform.position; // Gets origin
+            Vector2 direction = Vector2.left; // Direction
+
+            LayerMask mask = LayerMask.GetMask("PlantLayer"); // so it ignores everything that isn't in the plant layer
+            RaycastHit2D hit = Physics2D.Raycast(origin, direction, AttackDistance, mask);
+
+            if (hit.collider != null && hit.collider.CompareTag("Plant")) // Checks if it is null and an enemy
+            {
+                plant = hit.collider.GetComponent<Plants>();
+
+                if (plant.GetLane() == this.GetEnemyLane()) // just extra to make sure the plant is on the same lane as the enemy
+                {
+                    IsNear = true;
+                }
+            }
+            else
+            {
+                IsNear = false;
+            }
+
+            yield return new WaitForSeconds(0.1f); // Wait shorter amount of times as it's checking distance
+        }
+    }
+
+    public bool IsPlantNear() // used to check if the plant is near
+    {
+        return IsNear;
+    }
     public int GetEnemyLane() // Use to find which lane the enemy is on
     {
         return Line;

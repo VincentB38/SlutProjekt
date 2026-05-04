@@ -265,7 +265,7 @@ Transform:
   m_GameObject: {fileID: 172547665}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5335, y: 0.9567001, z: 2}
+  m_LocalPosition: {x: -7.525, y: 0.9567001, z: 2}
   m_LocalScale: {x: 1.5499644, y: 1.4127059, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1104,7 +1104,7 @@ Transform:
   m_GameObject: {fileID: 1211535076}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5335, y: 3.38, z: 2}
+  m_LocalPosition: {x: -7.525, y: 3.38, z: 2}
   m_LocalScale: {x: 1.5499644, y: 1.4127059, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1209,7 +1209,7 @@ MonoBehaviour:
         spawnInterval: 4
         maxAliveEnemies: 3
   - levelName: The lawn
-    startDelay: 2
+    startDelay: 6
     waves:
     - waveName: Wave 1
       groups:
@@ -1578,7 +1578,7 @@ Transform:
   m_GameObject: {fileID: 1576638994}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -7.5592003, y: -1.4001999, z: 2}
+  m_LocalPosition: {x: -7.525, y: -1.4001999, z: 2}
   m_LocalScale: {x: 1.5499644, y: 1.4127059, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2443,7 +2443,7 @@ Transform:
   m_GameObject: {fileID: 3690948691814659158}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2158003, y: -3.4164, z: 2}
+  m_LocalPosition: {x: -5.25, y: -3.4164, z: 2}
   m_LocalScale: {x: 1.5499644, y: 1.4127059, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
