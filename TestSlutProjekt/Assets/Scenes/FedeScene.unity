@@ -158,7 +158,6 @@ MonoBehaviour:
   attackRange: 5
   fireRate: 1
   bulletPrefab: {fileID: 837188112}
-  bulletFolder: {fileID: 567220377}
 --- !u!212 &188703072
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -555,7 +554,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c87ac887fa4b009409cdaaa02e7d1abc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Bullet
-  damage: 5
   timeUntilDeath: 5
 --- !u!61 &837188117
 BoxCollider2D:
@@ -1078,7 +1076,6 @@ MonoBehaviour:
   health: 10
   timeRangeInterval: {x: 1, y: 3}
   paperPrefab: {fileID: 807541016}
-  paperFolder: {fileID: 941977936}
 --- !u!1 &1754166755
 GameObject:
   m_ObjectHideFlags: 0
