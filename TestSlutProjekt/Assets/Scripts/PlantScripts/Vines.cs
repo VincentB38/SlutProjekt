@@ -14,6 +14,7 @@ public class Vines : SpecialOffensePlant
     {
         if (collision.CompareTag("Enemy"))
         {
+            Debug.Log("Detected Enemy");
             collision.GetComponent<EnemyHandler>().Speed *= slownessMultiplier; // Changes the enemy's speed by multiplying with the slownessMulti.
         }
     }
@@ -22,6 +23,7 @@ public class Vines : SpecialOffensePlant
     {
         if (collision.CompareTag("Enemy"))
         {
+            Debug.Log("Enemy left");
             collision.GetComponent<EnemyHandler>().Speed /= slownessMultiplier; // Restores slowed speed to original speed after leaving trigger
         }
     }
@@ -37,9 +39,11 @@ public class Vines : SpecialOffensePlant
             foreach (Collider2D hit in hits) // Goes through hits array
             {
                 EnemyHandler enemy = hit.GetComponent<EnemyHandler>(); // gets the enemy script
+                Debug.Log(enemy);
                 if (enemy != null)
                 // makes sure enemy isn't null
                 {
+                    Debug.Log("Damaged Enemy");
                     enemy.ChangeHealth(-1); // negative as negative and negative is positive
                 }
             }
