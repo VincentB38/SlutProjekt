@@ -43,7 +43,10 @@ public class PlayerStats : MonoBehaviour
     {
         health += amount;
 
-        // Add so something happens when health is under 0
+        if (health <= 0) // if player has no health 
+        {
+            SceneHandler.Instance.Lose(); // Lose logic 
+        }
     }
 
     public void SetLevel(int level)

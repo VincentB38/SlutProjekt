@@ -14,6 +14,16 @@ public class SceneHandler : MonoBehaviour
         SceneManager.LoadScene(0); // open level menu
     }
 
+    public void Lose() // lose Screen
+    {
+        SceneManager.LoadScene(2);
+    }
+
+    public void Win() // win Screen
+    {
+        SceneManager.LoadScene(3);
+    }
+
     public void PickLevel(GameObject Button)
     {
         try

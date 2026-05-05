@@ -199,7 +199,7 @@ public class EnemyLevelSHandler : MonoBehaviour
                 PlayerPrefs.SetInt("MaxLevel", MaxLevelUnlocked + 1); // increase max level by 1
             }
             yield return new WaitForSeconds(1f);
-            SceneHandler.Instance.BackToLevelMenu(); // go back to level menu (CHANGE LATER IF WE WANT A PLAY SCREEN)
+            SceneHandler.Instance.Win(); // Player beat the stage
         }
     }
 

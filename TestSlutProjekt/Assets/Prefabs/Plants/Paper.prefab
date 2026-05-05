@@ -108,7 +108,7 @@ MonoBehaviour:
   heightInterval: {x: 2, y: 4}
   widthInterval: {x: -3, y: 3}
   aliveTimer: 10
-  moneyGain: 50
+  moneyGain: 40
   paperParticleLayer:
     serializedVersion: 2
     m_Bits: 128
