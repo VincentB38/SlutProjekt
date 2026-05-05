@@ -8,6 +8,7 @@ public class Plants : MonoBehaviour
     [SerializeField] private string plantName;
     [SerializeField] private int price;
     [SerializeField] private float health;
+    [SerializeField] private bool enemyPassthrough;
 
     protected Transform playerTransform;
 
@@ -76,6 +77,11 @@ public class Plants : MonoBehaviour
     public int GetLane()
     {
         return lane;
+    }
+
+    public bool GetPassThrough()
+    {
+        return enemyPassthrough;
     }
     #endregion
 
