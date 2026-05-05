@@ -74,7 +74,7 @@ public class EnemyHandler : MonoBehaviour
 
     public virtual void ChangeHealth(float amount) // Change Health
     {
-        Health -= amount;
+        Health += amount;
         if (Health <= 0)
             Die();
     }
