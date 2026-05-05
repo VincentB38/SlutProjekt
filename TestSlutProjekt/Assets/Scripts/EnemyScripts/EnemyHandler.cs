@@ -78,11 +78,6 @@ public class EnemyHandler : MonoBehaviour
         if (Health <= 0)
             Die();
     }
-
-    public void ChangeSpeed(float Speed) // used for certain plants 
-    {
-        this.Speed *= Speed; // make the speed slower
-    }
     protected virtual void Die() // handles an enemy dying
     {
         Destroy(gameObject); // Destroys them
