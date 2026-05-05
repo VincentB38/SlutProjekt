@@ -44,7 +44,8 @@ public class EnemyHandler : MonoBehaviour
             {
                 plant = hit.collider.GetComponent<Plants>();
 
-                if (plant.GetLane() == this.GetEnemyLane()) // just extra to make sure the plant is on the same lane as the enemy
+                if (plant.GetLane() == this.GetEnemyLane() && plant.GetPassThrough() == false) // just extra to make sure the plant is on the same lane as the enemy
+                    // passthrough to make sure if the enemy should attack it or ignore it (true = ignore it)
                 {
                     IsNear = true;
                 }

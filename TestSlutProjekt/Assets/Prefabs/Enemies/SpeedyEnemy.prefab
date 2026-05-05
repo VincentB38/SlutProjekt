@@ -134,7 +134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   Health: 5
   AttackDistance: 1
-  Speed: 0.6
+  Speed: 1
   plant: {fileID: 0}
   Damage: 0.5
   ActionCooldown: 1
