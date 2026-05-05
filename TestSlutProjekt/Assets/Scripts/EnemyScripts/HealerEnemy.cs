@@ -33,7 +33,7 @@ public class HealerEnemy : EnemyHandler
     {
         while (true)
         {
-            Vector2 position = transform.position;
+            Vector2 position = transform.position; // get the enemy position
             LayerMask mask = LayerMask.GetMask("EnemyLayer"); // the enemy later
 
             Collider2D[] hits = Physics2D.OverlapCircleAll(position, Radius, mask); // checks in a cirular to see if an enemy is near it
@@ -44,7 +44,7 @@ public class HealerEnemy : EnemyHandler
                 if (enemy != null && enemy.gameObject != gameObject && enemy.GetComponent<HealerEnemy>() == null) 
                     // makes sure enemy isn't null and the enemy isn't itself (prevent self healing) and also checks so the enemy isn't a buffer too (prevents buffers buffing eachother)
                 {
-                    enemy.ChangeHealth(-HealAmount); // negative as negative and negative is positive
+                    enemy.ChangeHealth(HealAmount); // negative as negative and negative is positive
                 }
             }
 
