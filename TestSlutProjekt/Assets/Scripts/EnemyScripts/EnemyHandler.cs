@@ -26,14 +26,11 @@ public class EnemyHandler : MonoBehaviour
 
         if (EnemyBody.position.x <= -10) // if they manage to get past
         {
-            Die();
-            // add lose heart logic or wtv here
+            Die(); // kill the enemy
+            PlayerStats.Instance.ChangeHealth(-1); // take one health 
         } 
-        
-
     }
-
-    IEnumerator PlantChecker()
+    IEnumerator PlantChecker() // function to check if plant is near
     {
         while (true)
         {
@@ -82,6 +79,10 @@ public class EnemyHandler : MonoBehaviour
             Die();
     }
 
+    public void ChangeSpeed(float Speed) // used for certain plants 
+    {
+        this.Speed *= Speed; // make the speed slower
+    }
     protected virtual void Die() // handles an enemy dying
     {
         Destroy(gameObject); // Destroys them
