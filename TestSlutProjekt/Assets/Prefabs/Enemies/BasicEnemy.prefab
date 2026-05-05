@@ -133,9 +133,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::MeleeEnemy
   Health: 7
-  Speed: 0.6
-  Damage: 0.5
   AttackDistance: 1.25
+  Speed: 0.6
+  plant: {fileID: 0}
+  Damage: 0.5
   ActionCooldown: 0.5
 --- !u!61 &8287222978244805585
 BoxCollider2D:
