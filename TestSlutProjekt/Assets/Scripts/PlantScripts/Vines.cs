@@ -10,6 +10,11 @@ public class Vines : SpecialOffensePlant
     public float radius;
     public float damageCooldown = 1;
 
+    private void Start()
+    {
+        StartCoroutine(DamageEnemies()); // Starts checking for enemies
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.CompareTag("Enemy"))
