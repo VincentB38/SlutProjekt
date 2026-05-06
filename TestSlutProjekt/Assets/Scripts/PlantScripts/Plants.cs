@@ -5,18 +5,18 @@ public class Plants : MonoBehaviour
 {
 
     [Header("General")] // General Variables
-    [SerializeField] private string plantName;
-    [SerializeField] private int price;
-    [SerializeField] private float health;
-    [SerializeField] private bool enemyPassthrough;
+    [SerializeField] protected string plantName;
+    [SerializeField] protected int price;
+    [SerializeField] protected float health;
+    [SerializeField] protected bool enemyPassthrough;
 
     protected Transform playerTransform;
 
-    PlantTile tile;
-    private int lane;
+    protected PlantTile tile;
+    protected int lane;
 
     // Function to change health
-    public void ChangeHealth(float amount)
+    public virtual void ChangeHealth(float amount)
     {
         health += amount;
 
