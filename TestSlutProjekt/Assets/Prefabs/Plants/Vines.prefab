@@ -133,7 +133,7 @@ MonoBehaviour:
   enemyPassthrough: 1
   damage: 0.2
   slownessMultiplier: 0.5
-  radius: 20
+  radius: 1
   damageCooldown: 0.2
 --- !u!61 &2634065447858369467
 BoxCollider2D:
