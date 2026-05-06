@@ -219,6 +219,6 @@ MonoBehaviour:
   AttackDistance: 1
   Speed: 2
   plant: {fileID: 0}
-  Radius: 0
-  BuffCooldown: 0
-  HealAmount: 0
+  Radius: 2
+  BuffCooldown: 1
+  HealAmount: 1
