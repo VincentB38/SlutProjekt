@@ -15,6 +15,9 @@ public class RangedOffensePlant : Plants
     public float fireRate;
     public GameObject bulletPrefab;
     GameObject bulletFolder;
+    public Sprite bulletImage;
+
+    public bool isMelee = false;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -36,7 +39,7 @@ public class RangedOffensePlant : Plants
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, attackRange, mask);
             Debug.DrawRay(origin, direction, Color.green);
 
-            if (hit.collider != null && hit.collider.CompareTag("Enemy")) // Checks if it is null and an enemy
+            if (hit.collider != null && hit.collider.CompareTag("Enemy")) // Checks if it's not null and an enemy
             {
                 Attack();
             }
@@ -51,5 +54,8 @@ public class RangedOffensePlant : Plants
         GameObject tempBullet = Instantiate(bulletPrefab, muzzle.position, Quaternion.identity, bulletFolder.transform);
         tempBullet.GetComponent<Rigidbody2D>().linearVelocityX = bulletSpeed; // Sets speed of bullet
         tempBullet.GetComponent<Bullet>().SetDamage(damage);
+        tempBullet.GetComponent<SpriteRenderer>().sprite = bulletImage;
+
+        tempBullet.GetComponent<SpriteRenderer>().enabled = isMelee; // Hides bullet in case it is melee.
     }
 }

@@ -10,6 +10,8 @@ public class Vines : SpecialOffensePlant
     public float radius;
     public float damageCooldown = 1;
 
+    private HashSet<EnemyHandler> slowedEnemies = new HashSet<EnemyHandler>();
+
     private void Start()
     {
         StartCoroutine(DamageEnemies()); // Starts checking for enemies
@@ -23,36 +25,40 @@ public class Vines : SpecialOffensePlant
             LayerMask mask = LayerMask.GetMask("EnemyLayer");
             Collider2D[] hits = Physics2D.OverlapCircleAll(position, radius, mask);
 
-            foreach (Collider2D hit in hits) // Goes through hits array
+            HashSet<EnemyHandler> currentEnemies = new HashSet<EnemyHandler>();
+
+            foreach (Collider2D hit in hits)
             {
-                EnemyHandler enemy = hit.GetComponent<EnemyHandler>(); // gets the enemy script
+                EnemyHandler enemy = hit.GetComponent<EnemyHandler>();
                 if (enemy != null)
-                // makes sure enemy isn't null
                 {
-                    enemy.ChangeHealth(-damage); // negative as negative and negative is positive
+                    currentEnemies.Add(enemy);
+
+                    // DAMAGE (always applies)
+                    enemy.ChangeHealth(-damage);
+
+                    // SLOW (only apply once)
+                    if (!slowedEnemies.Contains(enemy))
+                    {
+                        enemy.Speed *= slownessMultiplier;
+                        slowedEnemies.Add(enemy);
+                    }
                 }
             }
 
+            // REMOVE SLOW from enemies that left
+            foreach (EnemyHandler enemy in slowedEnemies)
+            {
+                if (!currentEnemies.Contains(enemy))
+                {
+                    enemy.Speed /= slownessMultiplier;
+                }
+            }
+
+            // Update the tracked enemies
+            slowedEnemies = currentEnemies;
+
             yield return new WaitForSeconds(damageCooldown);
-        }
-    }
-
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        Debug.Log("Entered trigger");
-        if (collision.CompareTag("Enemy"))
-        {
-            Debug.Log("Detected Enemy");
-            collision.GetComponent<EnemyHandler>().Speed *= slownessMultiplier; // Changes the enemy's speed by multiplying with the slownessMulti.
-        }
-    }
-
-    private void OnTriggerExit2D(Collider2D collision)
-    {
-        if (collision.CompareTag("Enemy"))
-        {
-            Debug.Log("Enemy left");
-            collision.GetComponent<EnemyHandler>().Speed /= slownessMultiplier; // Restores slowed speed to original speed after leaving trigger
         }
     }
 }
