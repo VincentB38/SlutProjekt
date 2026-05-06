@@ -40,7 +40,7 @@ public class EnemyHandler : MonoBehaviour
             LayerMask mask = LayerMask.GetMask("PlantLayer"); // so it ignores everything that isn't in the plant layer
             RaycastHit2D hit = Physics2D.Raycast(origin, direction, AttackDistance, mask);
 
-            if (hit.collider != null && hit.collider.CompareTag("Plant")) // Checks if it is null and an enemy
+            if (hit.collider != null && hit.collider.CompareTag("Plant")) // Checks if it's not null and an enemy
             {
                 plant = hit.collider.GetComponent<Plants>();
 
