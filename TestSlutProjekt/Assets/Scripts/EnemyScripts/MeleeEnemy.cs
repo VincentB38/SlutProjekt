@@ -6,8 +6,8 @@ public class MeleeEnemy : EnemyHandler
 {
     GameObject PlantHolder;
     EnemyHandler enemyHandler;
-    public float Damage = 2f;
-    public float ActionCooldown = 1f;
+    [SerializeField] private float Damage = 2f;
+    [SerializeField] private float ActionCooldown = 1f;
 
     protected override void Awake()
     {

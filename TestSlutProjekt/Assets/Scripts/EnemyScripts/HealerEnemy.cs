@@ -5,9 +5,9 @@ using UnityEngine;
 public class HealerEnemy : EnemyHandler
 {
     GameObject PlantHolder;
-    public float Radius;
-    public float BuffCooldown;
-    public float HealAmount;
+    [SerializeField] private float Radius;
+    [SerializeField] private float BuffCooldown;
+    [SerializeField] private float HealAmount;
 
     EnemyHandler enemyHandler;
 
