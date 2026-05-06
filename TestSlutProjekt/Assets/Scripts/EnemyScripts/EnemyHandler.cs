@@ -8,8 +8,8 @@ public class EnemyHandler : MonoBehaviour
 {
     public Rigidbody2D EnemyBody { get; private set; }
     private GameObject GameHandler;
-    public float Health = 10f; // Stats for the enemies
-    public float AttackDistance = 25f;
+    [SerializeField] private float Health = 10f; // Stats for the enemies
+    [SerializeField] private float AttackDistance = 25f;
     public float Speed = 2f;
     private bool IsNear = false; // just a bool
     public Plants plant; // to store the nearby plant
