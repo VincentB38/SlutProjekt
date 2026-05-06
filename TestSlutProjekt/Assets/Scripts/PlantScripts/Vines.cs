@@ -15,8 +15,31 @@ public class Vines : SpecialOffensePlant
         StartCoroutine(DamageEnemies()); // Starts checking for enemies
     }
 
+    IEnumerator DamageEnemies()
+    {
+        while (true)
+        {
+            Vector2 position = transform.position;
+            LayerMask mask = LayerMask.GetMask("EnemyLayer");
+            Collider2D[] hits = Physics2D.OverlapCircleAll(position, radius, mask);
+
+            foreach (Collider2D hit in hits) // Goes through hits array
+            {
+                EnemyHandler enemy = hit.GetComponent<EnemyHandler>(); // gets the enemy script
+                if (enemy != null)
+                // makes sure enemy isn't null
+                {
+                    enemy.ChangeHealth(-damage); // negative as negative and negative is positive
+                }
+            }
+
+            yield return new WaitForSeconds(damageCooldown);
+        }
+    }
+
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        Debug.Log("Entered trigger");
         if (collision.CompareTag("Enemy"))
         {
             Debug.Log("Detected Enemy");
@@ -30,30 +53,6 @@ public class Vines : SpecialOffensePlant
         {
             Debug.Log("Enemy left");
             collision.GetComponent<EnemyHandler>().Speed /= slownessMultiplier; // Restores slowed speed to original speed after leaving trigger
-        }
-    }
-
-    IEnumerator DamageEnemies()
-    {
-        while (true)
-        {
-            Vector2 position = transform.position;
-            LayerMask mask = LayerMask.GetMask("EnemyLayer");
-            Collider2D[] hits = Physics2D.OverlapCircleAll(position, radius, mask);
-
-            foreach (Collider2D hit in hits) // Goes through hits array
-            {
-                EnemyHandler enemy = hit.GetComponent<EnemyHandler>(); // gets the enemy script
-                Debug.Log(enemy);
-                if (enemy != null)
-                // makes sure enemy isn't null
-                {
-                    Debug.Log("Damaged Enemy");
-                    enemy.ChangeHealth(-1); // negative as negative and negative is positive
-                }
-            }
-
-            yield return new WaitForSeconds(damageCooldown);
         }
     }
 }
