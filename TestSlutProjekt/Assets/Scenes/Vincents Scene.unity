@@ -1704,6 +1704,7 @@ MonoBehaviour:
   - {fileID: 1590682762803562348, guid: 86a691bb28e37f54780e4a90090bb9db, type: 3}
   - {fileID: 7843479867537506059, guid: ff46cca1aa363d04cbd0b823ad6accd9, type: 3}
   - {fileID: 757448243535409284, guid: 6ad654def2dccc24fa50d4c26183974c, type: 3}
+  - {fileID: 49221662897424078, guid: 05eaa289b68a33349a937b2a3607da18, type: 3}
   PlantHolder: {fileID: 562861123}
   selectedPlantIndex: 0
   tileLayer:
