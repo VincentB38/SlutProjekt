@@ -38,6 +38,7 @@ public class Mushroom : SpecialOffensePlant
     {
         while (true)
         {
+            Debug.Log("Enemy is: " + enemy);
             enemy.ChangeHealth(-damage);
             yield return new WaitForSeconds(poisonCooldown);
         }
