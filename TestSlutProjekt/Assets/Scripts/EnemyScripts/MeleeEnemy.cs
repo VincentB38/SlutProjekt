@@ -30,7 +30,7 @@ public class MeleeEnemy : EnemyHandler
     {
         while (true)
         {
-            if (enemyHandler.IsPlantNear()) // if a Plant is near
+            if (enemyHandler.IsPlantNear() && plant != null) // if a Plant is near and plant thing is not null
             {
                 enemyHandler.plant.ChangeHealth(-Damage); // get the plant that is near and then deal damage
             }

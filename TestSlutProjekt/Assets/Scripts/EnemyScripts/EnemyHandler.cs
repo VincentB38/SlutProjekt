@@ -53,6 +53,7 @@ public class EnemyHandler : MonoBehaviour
             else
             {
                 IsNear = false;
+                plant = null;
             }
 
             yield return new WaitForSeconds(0.1f); // Wait shorter amount of times as it's checking distance
