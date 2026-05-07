@@ -33,7 +33,8 @@ public class Mushroom : SpecialOffensePlant
 
     IEnumerator deathTimer() // Activates a timer to remove itself after a while, which stops the poison
     {
-        yield return new WaitForSeconds(aliveTimer);
+        yield return new WaitForSeconds(aliveTimer + 0.1f);
+        base.enemyPassthrough = true;
         Destroy(gameObject);
     }
 
