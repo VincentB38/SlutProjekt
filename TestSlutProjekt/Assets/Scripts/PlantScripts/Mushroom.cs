@@ -20,7 +20,7 @@ public class Mushroom : SpecialOffensePlant
         {
             isDead = true;
             base.tile.isOccupied = false; // Makes the tile unoccupied for Vincents code
-            LayerMask mask = LayerMask.NameToLayer("EnemyLayer"); // Converts layer name to mask number
+            LayerMask mask = LayerMask.GetMask("EnemyLayer"); // Converts layer name to mask number
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, rayLength, mask); // Sends out raycast
 
             if (hit.collider.CompareTag("Enemy")) enemy = hit.collider.GetComponent<EnemyHandler>(); // Makes enemy var. to corresponding enemy
