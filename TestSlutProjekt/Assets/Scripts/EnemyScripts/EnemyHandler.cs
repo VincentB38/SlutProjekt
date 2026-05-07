@@ -82,7 +82,7 @@ public class EnemyHandler : MonoBehaviour
     }
     protected virtual void Die() // handles an enemy dying
     {
-        Destroy(gameObject); // Destroys them
         GameHandler.GetComponent<EnemyLevelSHandler>().OnEnemyDestroyed(); // removes them from the spawner script to keep track of enemies alived
+        Destroy(gameObject); // Destroys them
     }
 }
