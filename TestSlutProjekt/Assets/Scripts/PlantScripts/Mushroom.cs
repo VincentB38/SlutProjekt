@@ -19,6 +19,7 @@ public class Mushroom : SpecialOffensePlant
         if (health <= 0 && !isDead) // If health goes below or equal to zero, it dies.
         {
             isDead = true;
+            base.enemyPassthrough = true; // allow enemies to go through (as it technically is dead)
             base.tile.isOccupied = false; // Makes the tile unoccupied for Vincents code
             LayerMask mask = LayerMask.GetMask("EnemyLayer"); // Converts layer name to mask number
             RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.right, rayLength, mask); // Sends out raycast
@@ -34,7 +35,6 @@ public class Mushroom : SpecialOffensePlant
     IEnumerator deathTimer() // Activates a timer to remove itself after a while, which stops the poison
     {
         yield return new WaitForSeconds(aliveTimer + 0.1f);
-        base.enemyPassthrough = true;
         Destroy(gameObject);
     }
 
