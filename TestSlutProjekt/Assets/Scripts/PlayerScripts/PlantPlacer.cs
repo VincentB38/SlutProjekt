@@ -3,7 +3,7 @@ using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlantPlacementController : MonoBehaviour
+public class PlantPlacer : MonoBehaviour
 {
     [Header("Plants")]
     public Plants[] availablePlants;

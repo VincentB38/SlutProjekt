@@ -58,4 +58,9 @@ public class RangedOffensePlant : Plants
 
         tempBullet.GetComponent<SpriteRenderer>().enabled = isMelee; // Hides bullet in case it is melee.
     }
+
+    public override float GetDamage()
+    {
+        return damage;
+    }
 }

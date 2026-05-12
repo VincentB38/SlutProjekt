@@ -74,6 +74,11 @@ public class Plants : MonoBehaviour
         return health;
     }
 
+    public virtual float GetDamage()
+    {
+        return 0;
+    }
+
     public int GetLane()
     {
         return lane;
@@ -83,12 +88,5 @@ public class Plants : MonoBehaviour
     {
         return enemyPassthrough;
     }
-    #endregion
-
-    #region Animation
-
-
-
-
     #endregion
 }
