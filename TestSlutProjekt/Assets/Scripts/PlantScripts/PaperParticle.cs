@@ -13,6 +13,7 @@ public class PaperParticle : MonoBehaviour
 
     [SerializeField] private int moneyGain;
     [SerializeField] private LayerMask paperParticleLayer;
+    [SerializeField] private int SpawnLane; // get the lane it spawned from
 
     private float x;
 
@@ -37,6 +38,11 @@ public class PaperParticle : MonoBehaviour
     void Update() // This not working correctly when instanced from the plant flower
     {
         SelectPaper();
+    }
+
+    public void SetLane(int Lane)
+    {
+        SpawnLane = Lane;
     }
 
     void SelectPaper()
