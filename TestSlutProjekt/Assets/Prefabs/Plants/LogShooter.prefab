@@ -11,10 +11,10 @@ GameObject:
   - component: {fileID: 9047989383050429927}
   - component: {fileID: 398616667148943513}
   - component: {fileID: -3407775936666238185}
-  - component: {fileID: 7843479867537506059}
-  - component: {fileID: -582552530207677085}
+  - component: {fileID: 1590682762803562348}
+  - component: {fileID: 4299970259761679651}
   m_Layer: 6
-  m_Name: Triangle 1
+  m_Name: LogShooter
   m_TagString: Plant
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,7 +32,8 @@ Transform:
   m_LocalPosition: {x: 0.31928, y: -0.4387, z: -2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 8472733717913341292}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!212 &398616667148943513
@@ -82,7 +83,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 8879801946381886910, guid: 47426f7dd7f4846439ea662f1267d047, type: 3}
+  m_Sprite: {fileID: -5348872815809521369, guid: 3ba2c5e266140464486485be8884bf8e, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -139,7 +140,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
---- !u!114 &7843479867537506059
+--- !u!114 &1590682762803562348
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -148,16 +149,22 @@ MonoBehaviour:
   m_GameObject: {fileID: 962529009191790329}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7031986cd063b8c45a7dafea6524a219, type: 3}
+  m_Script: {fileID: 11500000, guid: a6feb9c36b578124c81de5984c12c8af, type: 3}
   m_Name: 
-  m_EditorClassIdentifier: Assembly-CSharp::PassivePlant
-  plantName: SunFlower
-  price: 50
-  health: 3
+  m_EditorClassIdentifier: Assembly-CSharp::OffensePlant
+  plantName: Peashooter
+  price: 100
+  health: 6
   enemyPassthrough: 0
-  timeRangeInterval: {x: 8, y: 10}
-  paperPrefab: {fileID: 6519158900614044501, guid: 5a2c981e9340de54bafab5975bac8f1e, type: 3}
---- !u!95 &-582552530207677085
+  muzzle: {fileID: 8472733717913341292}
+  damage: 1
+  bulletSpeed: 2.5
+  attackRange: 14
+  fireRate: 1.75
+  bulletPrefab: {fileID: 2993415766274294852, guid: 8f6f981aeed97ed41bf857a7708d0500, type: 3}
+  bulletImage: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
+  isMelee: 0
+--- !u!95 &4299970259761679651
 Animator:
   serializedVersion: 7
   m_ObjectHideFlags: 0
@@ -167,7 +174,7 @@ Animator:
   m_GameObject: {fileID: 962529009191790329}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 8392d3aa3027bf647b353eac4535d713, type: 2}
+  m_Controller: {fileID: 9100000, guid: 09811e1e91adba14da25ec3b2343f303, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -179,3 +186,34 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1466676056725240346
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8472733717913341292}
+  m_Layer: 6
+  m_Name: Muzzle
+  m_TagString: Untagged
+  m_Icon: {fileID: 7174288486110832750, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8472733717913341292
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1466676056725240346}
+  serializedVersion: 2
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0.02, y: 0.04, z: 2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 9047989383050429927}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
