@@ -20,6 +20,9 @@ public class InventoryManager : MonoBehaviour
 
     // Variable for the indexed plants
     public List<Item> plantsItem = new List<Item>();
+    public List<Image> plantIcons = new List<Image>();
+
+
 
     void Start()
     {
@@ -28,18 +31,24 @@ public class InventoryManager : MonoBehaviour
             plantPlacer = GameObject.Find("GameHandler").GetComponent<PlantPlacer>();
         }catch (System.Exception e)
         {
-            Debug.LogException(e);
+            Debug.Log(e + " Did not find the game handler");
+        }
+
+        for(int i = 0; i < plantIcons.Count; i++)
+        {
+            plantIcons[i].sprite = plantsItem[i].sprite;
         }
     }
 
     private void Update() // Change from update to when pressed according to PlantPlacer script
     {
-        AssignPanel(plantsItem[plantPlacer.selectedPlantIndex]);
+        //AssignPanel(plantsItem[plantPlacer.selectedPlantIndex]);
+        AssignPanel(plantsItem[1], 1);
     }
 
-    void AssignPanel(Item selectedPlant)
+    void AssignPanel(Item selectedPlant, int index)
     {
-        itemPrefab.GetComponent<Image>().sprite = plantsItem[0].sprite;
+        itemPrefab.GetComponent<Image>().sprite = plantsItem[index].sprite;
         // Assign panel's corresponding values
         nameText.text = "Name: " + selectedPlant.plant.GetName();
         priceText.text = "Price: " + selectedPlant.plant.GetPrice().ToString();
