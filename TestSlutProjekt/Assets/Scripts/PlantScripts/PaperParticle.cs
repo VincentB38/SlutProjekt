@@ -21,10 +21,6 @@ public class PaperParticle : MonoBehaviour
     void Start()
     {
         x = transform.localPosition.x;
-
-        StartCoroutine(JumpAnim()); // Start jump animation
-
-        StartCoroutine(DeathTimer()); // Sets death timer
     }
 
     IEnumerator DeathTimer() // Wait for set time and then destroy
@@ -43,6 +39,9 @@ public class PaperParticle : MonoBehaviour
     public void SetLane(int Lane)
     {
         SpawnLane = Lane;
+
+        StartCoroutine(JumpAnim()); // do the spawn anim
+        StartCoroutine(DeathTimer()); // start the timer to destroy itself
     }
 
     void SelectPaper()
@@ -82,11 +81,22 @@ public class PaperParticle : MonoBehaviour
 
         Vector2 startPos = transform.localPosition; // Starting pos
 
-        float distanceX = Random.Range(widthInterval.x, widthInterval.y); // Which direction on the x axis as well as how far
+        float distanceX;
 
-        // Make it so it can not be smaller than -0.5 to 0.5 on the x axis, so it always lands beside
+        Debug.Log("SpawnLane: " + SpawnLane);
 
-        float height = Random.Range(heightInterval.x, heightInterval.y); // How high the particle will go
+        if (SpawnLane == 1)
+        {
+            distanceX = Random.Range(0, widthInterval.y); // force right side spawn always (so the paper doesn't go out of screen)
+        }
+        else
+        {
+            distanceX = Random.Range(widthInterval.x, widthInterval.y); // Which direction on the x axis as well as how far
+        }
+
+            // Make it so it can not be smaller than -0.5 to 0.5 on the x axis, so it always lands beside
+
+            float height = Random.Range(heightInterval.x, heightInterval.y); // How high the particle will go
 
         while (time < duration)
         {

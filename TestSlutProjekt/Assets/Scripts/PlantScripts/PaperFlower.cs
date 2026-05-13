@@ -41,7 +41,14 @@ public class PaperFlower : PassivePlant
             try // In case paperFolder is not found
             {
                 GameObject Paper = Instantiate(paperPrefab, transform.position, Quaternion.identity, paperFolder.transform);
-                Paper.GetComponent<PaperParticle>().SetLane(this.GetLane()); // set the papers lane, will use to make sure it does not go out of screen on the first row
+                if (gameObject.transform.position.x == -6.09f) // check to see if it's planted on the first row
+                {
+                    Paper.GetComponent<PaperParticle>().SetLane(1); // set the papers lane (actually row) to 1 if the x position matches 
+                }
+                else
+                {
+                    Paper.GetComponent<PaperParticle>().SetLane(2); // just set to 2 to make it so it can spawn wherever
+                }
 
             }
             catch(System.Exception e)

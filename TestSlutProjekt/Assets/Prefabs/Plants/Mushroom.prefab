@@ -128,7 +128,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Mushroom
   plantName: Mushroom
-  price: 10
+  price: 250
   health: 3
   enemyPassthrough: 0
   damage: 1
