@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 398616667148943513}
   - component: {fileID: -3407775936666238185}
   - component: {fileID: 7843479867537506059}
+  - component: {fileID: -582552530207677085}
   m_Layer: 6
   m_Name: Triangle 1
   m_TagString: Plant
@@ -81,8 +82,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 75f5f34dc1b5347e0b8351032682f224, type: 3}
-  m_Color: {r: 0, g: 0.20906878, b: 1, a: 1}
+  m_Sprite: {fileID: 8879801946381886910, guid: 47426f7dd7f4846439ea662f1267d047, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -129,7 +130,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0.21133333}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.28866667}
+    pivot: {x: 0.5, y: 0.5}
     oldSize: {x: 1, y: 1}
     newSize: {x: 1, y: 1}
     adaptiveTilingThreshold: 0.5
@@ -153,5 +154,28 @@ MonoBehaviour:
   plantName: SunFlower
   price: 50
   health: 3
+  enemyPassthrough: 0
   timeRangeInterval: {x: 8, y: 10}
   paperPrefab: {fileID: 6519158900614044501, guid: 5a2c981e9340de54bafab5975bac8f1e, type: 3}
+--- !u!95 &-582552530207677085
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 962529009191790329}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 8392d3aa3027bf647b353eac4535d713, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
