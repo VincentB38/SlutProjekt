@@ -29,7 +29,7 @@ public class InventoryManager : MonoBehaviour
         try
         {
             plantPlacer = GameObject.Find("GameHandler").GetComponent<PlantPlacer>();
-        }catch (System.Exception e)
+        }catch
         {
             throw new System.Exception(" Did not find GameHandler or PlantPlacer");
         }
