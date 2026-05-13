@@ -31,7 +31,7 @@ public class InventoryManager : MonoBehaviour
             plantPlacer = GameObject.Find("GameHandler").GetComponent<PlantPlacer>();
         }catch (System.Exception e)
         {
-            Debug.Log(e + " Did not find the game handler");
+            throw new System.Exception(" Did not find GameHandler or PlantPlacer");
         }
 
         for(int i = 0; i < plantIcons.Count; i++)
